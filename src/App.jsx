@@ -1,10 +1,11 @@
 import './App.css'
+import AppRoutes from './AppRoutes'
 
 function App() {
 
   return (
     <>
-      <h2> DR Store</h2>
+      <AppRoutes/>
     </>
   )
 }

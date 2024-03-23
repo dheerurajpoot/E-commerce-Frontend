@@ -1,0 +1,19 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body, input, select, button{
+  font-family: muli, sans-serif;
+  line-height: 1.7;
+}
+.container{
+  width: 1200px;
+}
+.header-container{
+  background: var(--primery-color);
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
