@@ -36,7 +36,7 @@ const ProductCard = () => {
 								<span>+</span>
 							</div>
 						</div>
-						<Link className='add-to-wishlist'>
+						<Link className='card-wishlist'>
 							<FaRegHeart size={25} />
 						</Link>
 					</div>

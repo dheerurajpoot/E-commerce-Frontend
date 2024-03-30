@@ -92,7 +92,7 @@ const Header = () => {
 							</div>
 						</div>
 						<div className='header-right'>
-							<div className='wishlist'>
+							<div className='header-wishlist'>
 								<Link to={"wishlist"}>
 									<FaRegHeart color='#fff' size={25} />
 								</Link>

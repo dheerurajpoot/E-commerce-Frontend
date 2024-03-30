@@ -43,7 +43,7 @@ const RecProductCard = () => {
 							count={5}
 							value='3'
 							edit={false}
-							size={16}
+							size={15}
 							activeColor='#FF504E'
 						/>
 						<div class='price'>
