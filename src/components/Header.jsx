@@ -27,9 +27,9 @@ const Header = () => {
 								<p>Save More on Map</p>
 							</div>
 							<span className='menu-line'></span>
-							<div>
+							<Link to={"/cart"} className='top-checkout'>
 								<p>Checkout</p>
-							</div>
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -38,11 +38,16 @@ const Header = () => {
 						<div className='header-left'>
 							<div className='logo'>
 								<Link to={"/"}>
-									<img src='./images/drstore.png' alt='' />
+									<img
+										src='./images/drstore.png'
+										alt='logo'
+									/>
 								</Link>
 							</div>
 							<div className='need-help'>
-								<Link className='need-help-text'>
+								<Link
+									to={"/contact"}
+									className='need-help-text'>
 									Need <br /> Help
 								</Link>
 							</div>
@@ -88,12 +93,12 @@ const Header = () => {
 						</div>
 						<div className='header-right'>
 							<div className='wishlist'>
-								<Link>
+								<Link to={"wishlist"}>
 									<FaRegHeart color='#fff' size={25} />
 								</Link>
 							</div>
 							<div className='cart'>
-								<Link>
+								<Link to={"/cart"}>
 									<HiOutlineShoppingCart
 										color='#fff'
 										size={25}
@@ -102,7 +107,7 @@ const Header = () => {
 								<span>0</span>
 							</div>
 							<div className='user'>
-								<Link>
+								<Link to={"/sign-in"}>
 									<FaRegUser color='#fff' size={25} />
 								</Link>
 							</div>
@@ -131,24 +136,24 @@ const Header = () => {
 								{"Home"}
 							</NavLink>
 							<span className='menu-line'></span>
-							<NavLink to={"/"} className={"h-menu"}>
+							<NavLink to={"/shop"} className={"h-menu"}>
 								{"Shop"}
 							</NavLink>
 							<span className='menu-line'></span>
-							<NavLink to={"/"} className={"h-menu"}>
-								{"Blog"}
+							<NavLink to={"/sale"} className={"h-menu"}>
+								{"Sale"}
 							</NavLink>
 							<span className='menu-line'></span>
-							<NavLink to={"/"} className={"h-menu"}>
-								{"Pages"}
+							<NavLink to={"/contact"} className={"h-menu"}>
+								{"Contact"}
 							</NavLink>
 							<span className='menu-line'></span>
-							<NavLink to={"/"} className={"h-menu"}>
-								{"Flash Sale"}
+							<NavLink to={"/about"} className={"h-menu"}>
+								{"About"}
 							</NavLink>
 						</div>
 						<div className='h-bottom-right'>
-							<Link to={"/"} className='track-order'>
+							<Link to={"/track-order"} className='track-order'>
 								<span>Track My Order</span>
 							</Link>
 						</div>

@@ -1,15 +1,15 @@
 import React from "react";
 
-const Shop = () => {
+const Sale = () => {
 	return (
 		<>
-			<div className='shop-container'>
+			<div className='sale-container'>
 				<div className='container'>
-					<h1>shop</h1>
+					<h1>Comming Soon</h1>
 				</div>
 			</div>
 		</>
 	);
 };
 
-export default Shop;
+export default Sale;
