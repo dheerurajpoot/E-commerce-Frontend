@@ -40,8 +40,10 @@ const Footer = () => {
 						<div className='f-middle-left'>
 							<h2>Help and Info</h2>
 							<div className='footer-menu'>
-								<NavLink className='fml-menu'>About Us</NavLink>
-								<NavLink className='fml-menu'>
+								<NavLink to={"/about"} className='fml-menu'>
+									About Us
+								</NavLink>
+								<NavLink to={"/contact"} className='fml-menu'>
 									Contact Us
 								</NavLink>
 								<NavLink className='fml-menu'>
@@ -57,14 +59,18 @@ const Footer = () => {
 							<h2>Important Links</h2>
 							<div className='footer-menu'>
 								<NavLink className='fml-menu'>Account</NavLink>
-								<NavLink className='fml-menu'>Wishlist</NavLink>
-								<NavLink className='fml-menu'>
+								<NavLink to={"/wishlist"} className='fml-menu'>
+									Wishlist
+								</NavLink>
+								<NavLink to={"/cart"} className='fml-menu'>
 									Your Cart
 								</NavLink>
 								<NavLink className='fml-menu'>
 									Shipping Policy
 								</NavLink>
-								<NavLink className='fml-menu'>Sale</NavLink>
+								<NavLink to={"/sale"} className='fml-menu'>
+									Sale
+								</NavLink>
 							</div>
 						</div>
 					</div>

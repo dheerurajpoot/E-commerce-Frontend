@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Sale from "./pages/Sale";
 import Wishlist from "./pages/Wishlist";
+import TrackOrder from "./pages/TrackOrder";
 
 const AppRoutes = () => {
 	return (
@@ -23,6 +24,7 @@ const AppRoutes = () => {
 						<Route path='/product' element={<SingleProduct />} />
 						<Route path='/sale' element={<Sale />} />
 						<Route path='/cart' element={<Cart />} />
+						<Route path='/track-order' element={<TrackOrder />} />
 						<Route path='/wishlist' element={<Wishlist />} />
 						<Route path='/contact' element={<Contact />} />
 						<Route path='/about' element={<About />} />

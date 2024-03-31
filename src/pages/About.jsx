@@ -8,7 +8,7 @@ const About = () => {
 					<div className='about-content'>
 						<div className='about-image-container'>
 							<img
-								src='https://pixabay.com/illustrations/shopping-design-ecommerce-sale-5200288/'
+								src='./images/minibanner.jpg'
 								alt='About Us'
 								className='about-image'
 							/>

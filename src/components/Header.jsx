@@ -15,11 +15,11 @@ const Header = () => {
 					<div className='header-top container'>
 						<div className='header-top-sections'>
 							<div>
-								<p>8049 High Ridge St. Saint Joseph</p>
+								<p>Purana Shivli Road, Kalyanpur, Kanpur</p>
 							</div>
 							<span className='menu-line'></span>
 							<div>
-								<p>Hotline: 970 978-6290</p>
+								<p>Hotline: +91 1234567890</p>
 							</div>
 						</div>
 						<div className='header-top-sections'>
