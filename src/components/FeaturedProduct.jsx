@@ -1,28 +1,36 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const FeaturedProduct = () => {
+const FeaturedProduct = ({ product }) => {
+	const { title, tags, price, images } = product;
+
 	return (
 		<>
 			<section className='featured-product'>
 				<div className='f-product-container'>
 					<div className='featured-product-container'>
-						<img
-							className='featured-product-image'
-							src='/images/apple.png'
-							alt=''
-						/>
+						{images.map((image, index) => (
+							<img
+								key={index}
+								className='featured-product-image'
+								src={`${image.url}`}
+								alt=''
+							/>
+						))}
 						<div className='featured-product-badge-container'>
-							<p className='featured-product-badge featured-product-badge--sale'>
-								Sale
-							</p>
+							<p className='featured-product-badge'>{tags}</p>
 						</div>
 					</div>
 					<div className='featured-container'>
 						<div className='featured-price-container'>
-							<p className='featured-price'>$9.00</p>
-							<del className='featured-discount'>$7.00</del>
+							<p className='featured-price'>{`₹${price}`}</p>
+							<del className='featured-discount'>{`₹${
+								price + (price * 20) / 100
+							}`}</del>
 						</div>
-						<h3 className='featured-product-name'>Fresh Apples</h3>
+						<Link to={"/"} className='featured-title'>
+							<h3 className='featured-product-name'>{title}</h3>
+						</Link>
 					</div>
 					<button className='featured-product-button'>
 						<div className='default-state'>Add to Cart</div>

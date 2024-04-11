@@ -4,17 +4,26 @@ import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 
-const RecProductCard = () => {
+const RecProductCard = ({ product }) => {
+	const { title, price, images, tags } = product;
+
 	return (
 		<>
 			<div className='rec-product-card'>
-				<div class='product-grid'>
-					<div class='product-image'>
-						<Link href='#' class='image'>
-							<img class='pic-1' src='images/capsicum.png' />
+				<div className='product-grid'>
+					<div className='product-image'>
+						<Link href='#' className='image'>
+							{images.map((image, index) => (
+								<img
+									key={index}
+									className='rec-product-img'
+									src={`${image.url}`}
+									alt=''
+								/>
+							))}
 						</Link>
-						<span class='product-discount-label'>-33%</span>
-						<ul class='product-links'>
+						<span className='product-discount-label'>{tags}</span>
+						<ul className='product-links'>
 							<li>
 								<Link
 									href='#'
@@ -33,21 +42,22 @@ const RecProductCard = () => {
 							</li>
 						</ul>
 					</div>
-					<div class='product-content'>
-						<h3 class='title'>
+					<div className='product-content'>
+						<h3 className='title'>
 							<Link className='product-name' href='#'>
-								Fresh Red Capsicum
+								{title}
 							</Link>
 						</h3>
 						<ReactStars
 							count={5}
-							value='3'
+							value={3}
 							edit={false}
 							size={15}
 							activeColor='#FF504E'
 						/>
-						<div class='price'>
-							<span>$90.00</span> $66.00
+						<div className='price'>
+							<span>{`₹${price + (price * 20) / 100}`}</span>{" "}
+							{`₹${price}`}
 						</div>
 					</div>
 				</div>

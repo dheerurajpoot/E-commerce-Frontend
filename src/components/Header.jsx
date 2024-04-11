@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
@@ -6,8 +6,16 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { FaRegUser } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategory } from "../features/category/categorySlice";
 
 const Header = () => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getCategory());
+	}, [dispatch]);
+
+	const totalCategory = useSelector((state) => state.category.category);
 	return (
 		<>
 			<div className='header-container'>
@@ -63,15 +71,17 @@ const Header = () => {
 												<option value='all-category'>
 													All Categories
 												</option>
-												<option value='computer'>
-													Computer
-												</option>
-												<option value='grocery'>
-													Grocery
-												</option>
-												<option value='vegitables'>
-													Vegitables
-												</option>
+												{totalCategory.map(
+													(i, index) => {
+														return (
+															<option
+																key={index}
+																value={i.title}>
+																{i.title}
+															</option>
+														);
+													}
+												)}
 											</select>
 										</div>
 									</div>
@@ -125,7 +135,14 @@ const Header = () => {
 									All Categories <IoIosArrowDown />
 								</button>
 								<div className='dropdown-options'>
-									<Link to={"/"}>Computer</Link>
+									{totalCategory.map((i, index) => {
+										return (
+											<Link to={"/"} key={index}>
+												{i.title}
+											</Link>
+										);
+									})}
+
 									<Link to={"/"}>Grocery</Link>
 									<Link to={"/"}>Vegitables</Link>
 								</div>

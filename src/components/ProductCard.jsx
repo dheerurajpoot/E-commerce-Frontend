@@ -3,25 +3,34 @@ import ReactStars from "react-rating-stars-component";
 import { FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
+	const { title, category, price, images, totalRating } = product;
+
 	return (
 		<>
 			<div className='card'>
 				<figure>
-					<img src='./images/capsicum.png' alt='capsicum' />
+					{images.map((image, index) => (
+						<img
+							key={index}
+							className='product-card-img'
+							src={`${image.url}`}
+							alt=''
+						/>
+					))}
 				</figure>
 				<section className='details'>
 					<div className='min-details'>
 						<Link to={"/product"} className='product-card-name'>
-							<h1 className='product-name'>Red Capsicum</h1>
-							<span className='card-category'>Vegitable</span>
+							<h1 className='product-name'>{title}</h1>
+							<span className='card-category'>{category}</span>
 						</Link>
-						<h1 className='price'>$5.99</h1>
+						<h1 className='price'>{`₹${price}`}</h1>
 					</div>
 					<div>
 						<ReactStars
 							count={5}
-							value='3'
+							value={Number(totalRating)}
 							edit={false}
 							size={18}
 							activeColor='#FF504E'

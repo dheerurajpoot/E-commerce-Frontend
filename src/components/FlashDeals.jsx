@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ImPower } from "react-icons/im";
 import ProductCard from "./ProductCard";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../features/products/productSlice";
 
 const FlashDeals = () => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getProducts());
+	}, [dispatch]);
+
+	const totalProduct = useSelector((state) => state.product.products);
+	const totalProducts = [...totalProduct].reverse();
 	return (
 		<>
 			<div className='flash-container'>
@@ -22,10 +31,9 @@ const FlashDeals = () => {
 				</div>
 				<div className='container'>
 					<div className='flash-products'>
-						<ProductCard />
-						<ProductCard />
-						<ProductCard />
-						<ProductCard />
+						{totalProducts.slice(0, 4).map((product, index) => (
+							<ProductCard key={index} product={product} />
+						))}
 					</div>
 				</div>
 			</div>

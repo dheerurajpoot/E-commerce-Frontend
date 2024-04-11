@@ -1,8 +1,7 @@
 import React from "react";
 import Carousel from "../components/Carousel";
 import FlashDeals from "../components/FlashDeals";
-import RecProductCard from "../components/RecProductCard";
-import FeaturedProduct from "../components/FeaturedProduct";
+import RecProductSection from "../components/RecProductSection";
 
 const Home = () => {
 	return (
@@ -30,12 +29,7 @@ const Home = () => {
 					<div className='container'>
 						<h2>RECOMMENDATIONS</h2>
 						<div className='rec-products'>
-							<RecProductCard />
-							<RecProductCard />
-							<RecProductCard />
-							<RecProductCard />
-							<RecProductCard />
-							<RecProductCard />
+							<RecProductSection />
 						</div>
 					</div>
 				</div>
