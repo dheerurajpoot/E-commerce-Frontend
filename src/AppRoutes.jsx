@@ -12,6 +12,9 @@ import SignUp from "./pages/SignUp";
 import Sale from "./pages/Sale";
 import Wishlist from "./pages/Wishlist";
 import TrackOrder from "./pages/TrackOrder";
+import TermsCondition from "./pages/TermsCondition";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import ShippingPolicy from "./pages/ShippingPolicy";
 
 const AppRoutes = () => {
 	return (
@@ -27,6 +30,18 @@ const AppRoutes = () => {
 						<Route path='/track-order' element={<TrackOrder />} />
 						<Route path='/wishlist' element={<Wishlist />} />
 						<Route path='/contact' element={<Contact />} />
+						<Route
+							path='/shipping-policy'
+							element={<ShippingPolicy />}
+						/>
+						<Route
+							path='/privacy-policy'
+							element={<PrivacyPolicy />}
+						/>
+						<Route
+							path='/terms-conditions'
+							element={<TermsCondition />}
+						/>
 						<Route path='/about' element={<About />} />
 						<Route path='/sign-in' element={<Login />} />
 						<Route path='/sign-up' element={<SignUp />} />

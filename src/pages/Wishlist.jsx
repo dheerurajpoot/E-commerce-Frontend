@@ -20,7 +20,7 @@ const Wishlist = () => {
 								<h3>Red Capsicum</h3>
 							</Link>
 						</div>
-						<div class='price'>
+						<div className='price'>
 							<span>Price:</span> $6.00
 						</div>
 					</div>
@@ -36,7 +36,7 @@ const Wishlist = () => {
 								<h3>Red Capsicum</h3>
 							</Link>
 						</div>
-						<div class='price'>
+						<div className='price'>
 							<span>Price:</span> $6.00
 						</div>
 					</div>

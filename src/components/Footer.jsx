@@ -46,10 +46,14 @@ const Footer = () => {
 								<NavLink to={"/contact"} className='fml-menu'>
 									Contact Us
 								</NavLink>
-								<NavLink className='fml-menu'>
+								<NavLink
+									to={"/terms-conditions"}
+									className='fml-menu'>
 									Terms & Conditions
 								</NavLink>
-								<NavLink className='fml-menu'>
+								<NavLink
+									to={"/privacy-policy"}
+									className='fml-menu'>
 									Privacy Policy
 								</NavLink>
 								<NavLink className='fml-menu'>FAQ</NavLink>
@@ -65,7 +69,9 @@ const Footer = () => {
 								<NavLink to={"/cart"} className='fml-menu'>
 									Your Cart
 								</NavLink>
-								<NavLink className='fml-menu'>
+								<NavLink
+									to={"/shipping-policy"}
+									className='fml-menu'>
 									Shipping Policy
 								</NavLink>
 								<NavLink to={"/sale"} className='fml-menu'>
@@ -104,16 +110,22 @@ const Footer = () => {
 					<div className='footer-bottom-right'>
 						<span>Stay Connected:</span>
 						<div className='footer-social'>
-							<Link to={"/"}>
+							<Link
+								to={
+									"https://www.facebook.com/dheerurajpootofficial"
+								}>
 								<FaFacebookF size={15} color='#000' />
 							</Link>
-							<Link to={"/"}>
+							<Link to={"https://twitter.com/DheeruRajpoot3"}>
 								<FaXTwitter size={15} color='#000' />
 							</Link>
-							<Link to={"/"}>
+							<Link
+								to={
+									"https://www.instagram.com/er.dheerurajpoot/"
+								}>
 								<FaInstagram size={15} color='#000' />
 							</Link>
-							<Link to={"/"}>
+							<Link to={"https://in.pinterest.com/"}>
 								<FaPinterestP size={15} color='#000' />
 							</Link>
 						</div>
