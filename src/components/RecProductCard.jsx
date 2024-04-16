@@ -3,16 +3,24 @@ import { FaRegHeart } from "react-icons/fa";
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { addToWishlist } from "../features/products/productSlice";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const RecProductCard = ({ product }) => {
-	const { title, price, images, tags } = product;
+	const { _id, title, price, images, tags } = product;
 
+	const dispatch = useDispatch();
+	const addItemToWishlist = (productId) => {
+		dispatch(addToWishlist(productId));
+		toast.success("Product Added to Wishlist!");
+	};
 	return (
 		<>
 			<div className='rec-product-card'>
 				<div className='product-grid'>
 					<div className='product-image'>
-						<Link href='#' className='image'>
+						<Link className='image'>
 							{images.map((image, index) => (
 								<img
 									key={index}
@@ -26,15 +34,16 @@ const RecProductCard = ({ product }) => {
 						<ul className='product-links'>
 							<li>
 								<Link
-									href='#'
 									className='product-icon'
 									data-tip='Add to Wishlist'>
-									<FaRegHeart size={25} />
+									<FaRegHeart
+										size={25}
+										onClick={(e) => addItemToWishlist(_id)}
+									/>
 								</Link>
 							</li>
 							<li>
 								<Link
-									href='#'
 									className='product-icon'
 									data-tip='Add to Cart'>
 									<HiOutlineShoppingCart size={25} />
@@ -44,9 +53,7 @@ const RecProductCard = ({ product }) => {
 					</div>
 					<div className='product-content'>
 						<h3 className='title'>
-							<Link className='product-name' href='#'>
-								{title}
-							</Link>
+							<Link className='product-name'>{title}</Link>
 						</h3>
 						<ReactStars
 							count={5}

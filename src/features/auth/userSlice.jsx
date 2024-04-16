@@ -2,8 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import userService from "./userService";
 import { toast } from "react-toastify";
 
+const getCustomerFromLocalStorage = localStorage.getItem("customer")
+	? JSON.parse(localStorage.getItem("customer"))
+	: null;
+
 const initialState = {
-	user: "",
+	user: getCustomerFromLocalStorage,
 	isError: false,
 	isLoading: false,
 	isSuccess: false,
@@ -25,6 +29,16 @@ export const loginUser = createAsyncThunk(
 	async (userData, thunkAPI) => {
 		try {
 			return await userService.loginUser(userData);
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error);
+		}
+	}
+);
+export const getWishlistItems = createAsyncThunk(
+	"auth/wishlist",
+	async (thunkAPI) => {
+		try {
+			return await userService.getWishlistItems();
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error);
 		}
@@ -81,6 +95,22 @@ export const userSlice = createSlice({
 				if (state.isError === true) {
 					toast.error(action.error);
 				}
+			})
+			.addCase(getWishlistItems.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(getWishlistItems.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isError = false;
+				state.isSuccess = true;
+				state.wishlist = action.payload;
+				state.message = "Success";
+			})
+			.addCase(getWishlistItems.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.isSuccess = false;
+				state.message = action.error;
 			});
 	},
 });

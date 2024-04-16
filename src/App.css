@@ -129,6 +129,23 @@ body, input, select, button{
   align-items: center;
   gap: 20px;
 }
+.header-wishlist{
+  position: relative;
+}
+.wishlist-count{
+  position: absolute;
+  top: -25px; 
+  right: -10px;
+  font: bold;
+  color: #fff;
+  padding: 5px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--third-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .cart{
   position: relative;
   
@@ -792,7 +809,7 @@ background-color: var(--primery-color);
 .wishlist-img{
   width: 200px;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   position: relative;
 }
 .wishlist-img img{
@@ -803,6 +820,9 @@ background-color: var(--primery-color);
   position: absolute;
   top: 8px;
   right: 8px;
+}
+.wishlist-title{
+  padding: 10px;
 }
 .wishlist-product-title{
   text-decoration: none;

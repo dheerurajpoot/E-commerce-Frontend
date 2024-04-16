@@ -2,9 +2,17 @@ import React from "react";
 import ReactStars from "react-rating-stars-component";
 import { FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToWishlist } from "../features/products/productSlice";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ product }) => {
-	const { title, category, price, images, totalRating } = product;
+	const dispatch = useDispatch();
+	const { _id, title, category, price, images, totalRating } = product;
+	const addItemToWishlist = (productId) => {
+		dispatch(addToWishlist(productId));
+		toast.success("Product Added to Wishlist!");
+	};
 
 	return (
 		<>
@@ -45,7 +53,9 @@ const ProductCard = ({ product }) => {
 								<span>+</span>
 							</div>
 						</div>
-						<Link className='card-wishlist'>
+						<Link
+							className='card-wishlist'
+							onClick={(e) => addItemToWishlist(_id)}>
 							<FaRegHeart size={25} />
 						</Link>
 					</div>
