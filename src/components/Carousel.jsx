@@ -3,20 +3,20 @@ import { useState, useEffect } from "react";
 
 const slidesData = [
 	{
-		title: "Slide 1",
-		subtitle: "Subtitle for Slide 1",
+		title: "Friday Sale",
+		subtitle: "Buy anything and get 30% OFF",
 		buttonText: "Buy Now",
 		image: "./images/banner1.jpg",
 	},
 	{
-		title: "Slide 2",
-		subtitle: "Subtitle for Slide 2",
+		title: "Holyday Special",
+		subtitle: "Click Below to get Holyday Special Deal",
 		buttonText: "Buy Now",
 		image: "./images/banner2.jpg",
 	},
 	{
-		title: "",
-		subtitle: "",
+		title: "Weekend Sale",
+		subtitle: "Get 20% Extra Discount on every Weekend",
 		buttonText: "Shop Now",
 		image: "./images/banner3.jpg",
 	},

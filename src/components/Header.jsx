@@ -16,6 +16,7 @@ const Header = () => {
 	}, [dispatch]);
 
 	const totalCategory = useSelector((state) => state.category.category);
+	const loggedUser = useSelector((state) => state.auth.user);
 	return (
 		<>
 			<div className='header-container'>
@@ -30,13 +31,18 @@ const Header = () => {
 								<p>Hotline: +91 1234567890</p>
 							</div>
 						</div>
-						<div className='header-top-sections'>
-							<div>
-								<p>Save More on Map</p>
-							</div>
+						<div className='header-top-sections '>
+							<Link to={"/sign-in"} className='top-checkout'>
+								<p>Login</p>
+							</Link>
 							<span className='menu-line'></span>
-							<Link to={"/cart"} className='top-checkout'>
-								<p>Checkout</p>
+							<Link to={"/profile"} className='top-checkout'>
+								<p>
+									Username:{" "}
+									{loggedUser
+										? loggedUser.name
+										: "You need to login again!"}
+								</p>
 							</Link>
 						</div>
 					</div>
@@ -117,8 +123,13 @@ const Header = () => {
 								<span>0</span>
 							</div>
 							<div className='user'>
-								<Link to={"/sign-in"}>
+								<Link to={"/profile"} title=''>
 									<FaRegUser color='#fff' size={25} />
+									<span className='tooltip'>
+										{loggedUser
+											? loggedUser.name
+											: "Login Again"}
+									</span>
 								</Link>
 							</div>
 						</div>

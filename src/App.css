@@ -147,6 +147,31 @@ body, input, select, button{
   top: -15px;
   right: -10px;
 }
+.user {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  top: 30px; /* Adjust as needed */
+  left: 50%;
+  width: 140px;
+  text-align: center;
+  transform: translateX(-50%);
+  background-color: var(--fourth-color);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.user:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
 .header-bottom{
   height: 50px;
   width: 100%;
@@ -376,13 +401,15 @@ body, input, select, button{
 }
 
 .content h3 {
-  font-size: 24px;
+  font-size: 44px;
+  font-weight: 800;
   margin-bottom: 10px;
 }
 
 .content p {
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 20px;
+  font-weight: 600;
 }
 
 .carousel-btn {
@@ -1807,4 +1834,18 @@ background-color: var(--primery-color);
 }
 .terms-heading, .policy-heading, .shipping-heading{
   margin: 20px 0;
+}
+.error{
+  color: red;
+}
+.profile-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
+}
+@media only screen and (max-width: 600px) and (min-width: 350px){
+  .header-middle{
+    display: none;
+  }
 }

@@ -1,6 +1,36 @@
 import React from "react";
+import { useFormik } from "formik";
+import { Link } from "react-router-dom";
+import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../features/auth/userSlice";
+import { useNavigate } from "react-router-dom";
+
+const loginSchema = yup.object({
+	email: yup
+		.string()
+		.email("Email should be valid")
+		.required("Email is Required"),
+	password: yup.string().required("Password is Required"),
+});
 
 const Login = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const formik = useFormik({
+		initialValues: {
+			email: "",
+			password: "",
+		},
+		validationSchema: loginSchema,
+		onSubmit: (values) => {
+			dispatch(loginUser(values));
+			setTimeout(() => {
+				navigate("/");
+			}, 300);
+		},
+	});
+
 	return (
 		<>
 			<div className='login-container'>
@@ -21,6 +51,7 @@ const Login = () => {
 										Sign in to your account
 									</h1>
 									<form
+										onSubmit={formik.handleSubmit}
 										className='signin-form-fields'
 										action='#'>
 										<div className='form-field'>
@@ -35,8 +66,18 @@ const Login = () => {
 												id='email'
 												className='form-input'
 												placeholder='name@drstore.com'
-												required
+												value={formik.values.email}
+												onChange={formik.handleChange(
+													"email"
+												)}
+												onBlur={formik.handleBlur(
+													"email"
+												)}
 											/>
+											<div className='error'>
+												{formik.touched.email &&
+													formik.errors.email}
+											</div>
 										</div>
 										<div className='form-field'>
 											<label
@@ -50,8 +91,18 @@ const Login = () => {
 												id='password'
 												placeholder='••••••••'
 												className='form-input'
-												required
+												value={formik.values.password}
+												onChange={formik.handleChange(
+													"password"
+												)}
+												onBlur={formik.handleBlur(
+													"password"
+												)}
 											/>
+											<div className='error'>
+												{formik.touched.password &&
+													formik.errors.password}
+											</div>
 										</div>
 										<div className='form-checkbox'>
 											<input
@@ -59,7 +110,6 @@ const Login = () => {
 												aria-describedby='remember'
 												type='checkbox'
 												className='checkbox-input'
-												required
 											/>
 											<label
 												htmlFor='remember'
@@ -67,11 +117,11 @@ const Login = () => {
 												Remember me
 											</label>
 										</div>
-										<a
-											href='#'
+										<Link
+											to={"/"}
 											className='forgot-password-link'>
 											Forgot password?
-										</a>
+										</Link>
 										<button
 											type='submit'
 											className='signin-button'>
@@ -79,11 +129,11 @@ const Login = () => {
 										</button>
 										<p className='signup-text'>
 											Don’t have an account yet?{" "}
-											<a
-												href='/sign-up'
+											<Link
+												to={"/sign-up"}
 												className='signup-link'>
 												Sign up
-											</a>
+											</Link>
 										</p>
 									</form>
 								</div>

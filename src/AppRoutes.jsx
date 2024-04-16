@@ -15,6 +15,7 @@ import TrackOrder from "./pages/TrackOrder";
 import TermsCondition from "./pages/TermsCondition";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ShippingPolicy from "./pages/ShippingPolicy";
+import Profile from "./pages/Profile";
 
 const AppRoutes = () => {
 	return (
@@ -27,6 +28,7 @@ const AppRoutes = () => {
 						<Route path='/product' element={<SingleProduct />} />
 						<Route path='/sale' element={<Sale />} />
 						<Route path='/cart' element={<Cart />} />
+						<Route path='/profile' element={<Profile />} />
 						<Route path='/track-order' element={<TrackOrder />} />
 						<Route path='/wishlist' element={<Wishlist />} />
 						<Route path='/contact' element={<Contact />} />

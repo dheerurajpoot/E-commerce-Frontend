@@ -1,20 +1,53 @@
 import React from "react";
+import { useFormik } from "formik";
+import { Link } from "react-router-dom";
+import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../features/auth/userSlice";
+import { useNavigate } from "react-router-dom";
+
+const signUpSchema = yup.object({
+	name: yup.string().required("Name is Required"),
+	mobile: yup.string().required("Mobile No. is Required"),
+	email: yup
+		.string()
+		.email("Email should be valid")
+		.required("Email is Required"),
+	password: yup.string().required("Password is Required"),
+});
 
 const SignUp = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const formik = useFormik({
+		initialValues: {
+			name: "",
+			mobile: "",
+			email: "",
+			password: "",
+		},
+		validationSchema: signUpSchema,
+		onSubmit: (values) => {
+			dispatch(registerUser(values));
+			setTimeout(() => {
+				navigate("/sign-in");
+			}, 300);
+		},
+	});
 	return (
 		<>
 			<div className='signup-container'>
 				<div className='container'>
 					<section className='signin-section'>
 						<div className='signin-container'>
-							<a href='/' className='signin-logo'>
+							<Link to={"/"} className='signin-logo'>
 								<img
 									className='logo-icon'
 									src='./images/drstoreicon.png'
 									alt='logo'
 								/>
 								DR Store
-							</a>
+							</Link>
 							<div className='signin-form-container'>
 								<div className='signin-form'>
 									<h1 className='signin-title'>
@@ -22,7 +55,8 @@ const SignUp = () => {
 									</h1>
 									<form
 										className='signin-form-fields'
-										action='#'>
+										action='#'
+										onSubmit={formik.handleSubmit}>
 										<div className='form-field'>
 											<label
 												htmlFor='email'
@@ -35,8 +69,18 @@ const SignUp = () => {
 												id='name'
 												className='form-input'
 												placeholder='Full Name'
-												required
+												value={formik.values.name}
+												onChange={formik.handleChange(
+													"name"
+												)}
+												onBlur={formik.handleBlur(
+													"name"
+												)}
 											/>
+											<div className='error'>
+												{formik.touched.name &&
+													formik.errors.name}
+											</div>
 										</div>
 										<div className='form-field'>
 											<label
@@ -46,12 +90,22 @@ const SignUp = () => {
 											</label>
 											<input
 												type='number'
-												name='number'
-												id='number'
+												name='mobile'
+												id='mobile'
 												className='form-input'
 												placeholder='+91-1234567890'
-												required
+												value={formik.values.mobile}
+												onChange={formik.handleChange(
+													"mobile"
+												)}
+												onBlur={formik.handleBlur(
+													"mobile"
+												)}
 											/>
+											<div className='error'>
+												{formik.touched.mobile &&
+													formik.errors.mobile}
+											</div>
 										</div>
 										<div className='form-field'>
 											<label
@@ -65,8 +119,18 @@ const SignUp = () => {
 												id='email'
 												className='form-input'
 												placeholder='name@drstore.com'
-												required
+												value={formik.values.email}
+												onChange={formik.handleChange(
+													"email"
+												)}
+												onBlur={formik.handleBlur(
+													"email"
+												)}
 											/>
+											<div className='error'>
+												{formik.touched.email &&
+													formik.errors.email}
+											</div>
 										</div>
 										<div className='form-field'>
 											<label
@@ -80,8 +144,18 @@ const SignUp = () => {
 												id='password'
 												placeholder='••••••••'
 												className='form-input'
-												required
+												value={formik.values.password}
+												onChange={formik.handleChange(
+													"password"
+												)}
+												onBlur={formik.handleBlur(
+													"password"
+												)}
 											/>
+											<div className='error'>
+												{formik.touched.password &&
+													formik.errors.password}
+											</div>
 										</div>
 										<div className='form-checkbox'>
 											<input
@@ -89,7 +163,6 @@ const SignUp = () => {
 												aria-describedby='remember'
 												type='checkbox'
 												className='checkbox-input'
-												required
 											/>
 											<label
 												htmlFor='remember'
