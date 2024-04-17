@@ -46,7 +46,9 @@ const Wishlist = () => {
 									</div>
 								</div>
 								<div className='wishlist-title'>
-									<Link className='wishlist-product-title'>
+									<Link
+										to={`/product/${items?._id}`}
+										className='wishlist-product-title'>
 										<h3>{items?.title}</h3>
 									</Link>
 								</div>

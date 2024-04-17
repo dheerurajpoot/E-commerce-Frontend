@@ -11,6 +11,7 @@ const SingleProduct = () => {
 	const productId = location.pathname.split("/")[2];
 	useEffect(() => {
 		dispatch(getProduct(productId));
+		window.scrollTo(0, 0);
 	}, [dispatch]);
 	const product = useSelector((state) => state.product?.product);
 	const addItemToWishlist = (prodId) => {

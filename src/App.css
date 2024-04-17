@@ -1735,6 +1735,117 @@ background-color: var(--primery-color);
   align-items: center;
   margin: 50px 0;
 }
+.sale-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.sale-banner{
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  border: 1px solid var(--fourth-color);
+}
+.home-sale{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+}
+.home-sale-banner{
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+/* faq page start here  */
+
+.faq-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+}
+.faq-title{
+  margin: 20px 0;
+}
+.faq-heading {
+  font-weight: 500;
+  font-size: 20px;
+  text-indent: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.faq-text {
+  font-weight: 400;
+  color: #474646;
+  font-size: 18px;
+  width:95%;
+  padding-left:20px;
+  margin-bottom:30px;
+}
+
+.faq {
+  margin: 0 auto;
+  border-radius: 3px;
+  position: relative;
+  border: 1px solid var(--primery-color);
+}
+.faq label {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  height: 56px;
+  padding-top:16px;
+ 
+  border-bottom: 1px solid var(--primery-color);
+}
+
+.faq input[type="checkbox"] {
+  display: none;
+}
+
+.faq .faq-arrow {
+  width: 10px;
+  height: 10px;
+  transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  transition: transform 0.8s, -webkit-transform 0.8s;
+  border-top: 2px solid rgba(0, 0, 0, 0.33);
+  border-right: 2px solid rgba(0, 0, 0, 0.33);
+  float: right;
+  position: relative;
+  top: -30px;
+  right: 27px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+ .faq input[type="checkbox"]:checked + label > .faq-arrow {
+  transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  transition: transform 0.8s, -webkit-transform 0.8s;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+ .faq input[type="checkbox"]:checked + label {
+  display: block;
+  background: rgba(255,255,255,255) !important;
+  color: var(--fourth-color);
+  height: 155px;
+  transition: height 0.8s;
+}
+
+ .faq input[type='checkbox']:not(:checked) + label {
+  display: block;
+  transition: height 0.8s;
+  height: 60px;
+}
+
 
 /* Order Summary Page */
 

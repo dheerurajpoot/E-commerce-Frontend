@@ -33,6 +33,13 @@ const Home = () => {
 						</div>
 					</div>
 				</div>
+				<div className='home-sale'>
+					<div className='container'>
+						<div className='home-sale-banner'>
+							<img src='./images/home-banner.png' alt='' />
+						</div>
+					</div>
+				</div>
 			</div>
 		</>
 	);

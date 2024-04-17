@@ -16,6 +16,7 @@ import TermsCondition from "./pages/TermsCondition";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ShippingPolicy from "./pages/ShippingPolicy";
 import Profile from "./pages/Profile";
+import Faq from "./pages/Faq";
 
 const AppRoutes = () => {
 	return (
@@ -35,6 +36,7 @@ const AppRoutes = () => {
 						<Route path='/track-order' element={<TrackOrder />} />
 						<Route path='/wishlist' element={<Wishlist />} />
 						<Route path='/contact' element={<Contact />} />
+						<Route path='/faq' element={<Faq />} />
 						<Route
 							path='/shipping-policy'
 							element={<ShippingPolicy />}

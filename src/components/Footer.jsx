@@ -57,7 +57,9 @@ const Footer = () => {
 									className='fml-menu'>
 									Privacy Policy
 								</NavLink>
-								<NavLink className='fml-menu'>FAQ</NavLink>
+								<NavLink to={"/faq"} className='fml-menu'>
+									FAQ
+								</NavLink>
 							</div>
 						</div>
 						<div className='f-middle-right'>
