@@ -1812,9 +1812,9 @@ background-color: var(--primery-color);
 .faq .faq-arrow {
   width: 10px;
   height: 10px;
-  transition: -webkit-transform 0.8s;
-  transition: transform 0.8s;
-  transition: transform 0.8s, -webkit-transform 0.8s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
   border-top: 2px solid rgba(0, 0, 0, 0.33);
   border-right: 2px solid rgba(0, 0, 0, 0.33);
   float: right;
@@ -1826,9 +1826,9 @@ background-color: var(--primery-color);
 }
 
  .faq input[type="checkbox"]:checked + label > .faq-arrow {
-  transition: -webkit-transform 0.8s;
-  transition: transform 0.8s;
-  transition: transform 0.8s, -webkit-transform 0.8s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
   -webkit-transform: rotate(135deg);
           transform: rotate(135deg);
 }
@@ -1837,12 +1837,12 @@ background-color: var(--primery-color);
   background: rgba(255,255,255,255) !important;
   color: var(--fourth-color);
   height: 155px;
-  transition: height 0.8s;
+  transition: height 0.5s;
 }
 
  .faq input[type='checkbox']:not(:checked) + label {
   display: block;
-  transition: height 0.8s;
+  transition: height 0.5s;
   height: 60px;
 }
 

@@ -1,9 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GrLocation } from "react-icons/gr";
 import { TbPhoneCall } from "react-icons/tb";
 import { MdOutlineWatchLater } from "react-icons/md";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import { createEnquiry } from "../features/enquiry/enquirySlice";
+
+const enquirySchema = yup.object({
+	name: yup.string().required("Name is Required"),
+	mobile: yup.string().required("Mobile No. is Required"),
+	email: yup
+		.string()
+		.email("Email should be valid")
+		.required("Email is Required"),
+	comment: yup.string().required("Description is Required"),
+});
 
 const Contact = () => {
+	const dispatch = useDispatch();
+	const formik = useFormik({
+		initialValues: {
+			name: "",
+			mobile: "",
+			email: "",
+			comment: "",
+		},
+
+		validationSchema: enquirySchema,
+		onSubmit: (values) => {
+			dispatch(createEnquiry(values));
+			formik.resetForm();
+		},
+	});
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<>
 			<div className='contact-container'>
@@ -64,35 +96,70 @@ const Contact = () => {
 					</div>
 					<div className='contact-form'>
 						<h2 className='form-heading'>Ready to Get Started?</h2>
-						<form id='contactForm'>
+						<form onSubmit={formik.handleSubmit} id='contactForm'>
 							<div className='form-group'>
 								<input
 									type='text'
 									id='name'
-									autoComplete='given-name'
 									placeholder='Your name'
 									className='form-input'
 									name='name'
+									value={formik.values.name}
+									onChange={formik.handleChange("name")}
+									onBlur={formik.handleBlur("name")}
 								/>
+								<div className='error'>
+									{formik.touched.name && formik.errors.name}
+								</div>
+							</div>
+							<div className='form-group'>
+								<input
+									type='number'
+									id='mobile'
+									placeholder='Your mobile number'
+									className='form-input'
+									name='mobile'
+									value={formik.values.mobile}
+									onChange={formik.handleChange("mobile")}
+									onBlur={formik.handleBlur("mobile")}
+								/>
+								<div className='error'>
+									{formik.touched.mobile &&
+										formik.errors.mobile}
+								</div>
 							</div>
 							<div className='form-group'>
 								<input
 									type='email'
 									id='email'
-									autoComplete='email'
 									placeholder='Your email address'
 									className='form-input'
 									name='email'
+									value={formik.values.email}
+									onChange={formik.handleChange("email")}
+									onBlur={formik.handleBlur("email")}
 								/>
+								<div className='error'>
+									{formik.touched.email &&
+										formik.errors.email}
+								</div>
 							</div>
 							<div className='form-group'>
 								<textarea
 									id='textarea'
-									name='textarea'
+									name='comment'
 									cols='30'
 									rows='5'
 									placeholder='Write your message...'
-									className='form-textarea'></textarea>
+									className='form-textarea'
+									value={formik.values.comment}
+									onChange={formik.handleChange("comment")}
+									onBlur={formik.handleBlur("comment")}
+								/>
+								<div className='error'>
+									{formik.touched.comment &&
+										formik.errors.comment}
+								</div>
 							</div>
 							<div className='text-center'>
 								<button type='submit' className='submit-btn'>
