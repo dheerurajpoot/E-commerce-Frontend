@@ -25,7 +25,10 @@ const AppRoutes = () => {
 					<Route path='/' element={<Body />}>
 						<Route index element={<Home />} />
 						<Route path='/shop' element={<Shop />} />
-						<Route path='/product' element={<SingleProduct />} />
+						<Route
+							path='/product/:id'
+							element={<SingleProduct />}
+						/>
 						<Route path='/sale' element={<Sale />} />
 						<Route path='/cart' element={<Cart />} />
 						<Route path='/profile' element={<Profile />} />

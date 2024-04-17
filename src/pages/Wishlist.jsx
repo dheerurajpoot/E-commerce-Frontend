@@ -23,6 +23,11 @@ const Wishlist = () => {
 			<div className='wishlist-container'>
 				<h2>Wishlist</h2>
 				<div className='container wishlist-section'>
+					{wishlistItems?.length === 0 && (
+						<p className='empty-wishlist'>
+							Your wishlist is empty!
+						</p>
+					)}
 					{wishlistItems?.map((items, index) => {
 						return (
 							<div className='wishlist' key={index}>

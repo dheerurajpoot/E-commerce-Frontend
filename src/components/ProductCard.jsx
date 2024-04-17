@@ -23,14 +23,19 @@ const ProductCard = ({ product }) => {
 							key={index}
 							className='product-card-img'
 							src={`${image.url}`}
-							alt=''
+							alt='product image'
 						/>
 					))}
 				</figure>
 				<section className='details'>
 					<div className='min-details'>
-						<Link to={"/product"} className='product-card-name'>
-							<h1 className='product-name'>{title}</h1>
+						<Link
+							to={`/product/${_id}`}
+							className='product-card-name'>
+							<h1 className='product-name'>{`${title.substr(
+								0,
+								40
+							)}....`}</h1>
 							<span className='card-category'>{category}</span>
 						</Link>
 						<h1 className='price'>{`₹${price}`}</h1>

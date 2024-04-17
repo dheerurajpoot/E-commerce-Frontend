@@ -24,11 +24,23 @@ const About = () => {
 								</span>
 							</h2>
 							<p className='about-section-description'>
-								Lorem ipsum dolor sit amet, consectetur
-								adipisicing elit. Aliquid, commodi doloremque,
-								fugiat illum magni minus nisi nulla numquam
-								obcaecati placeat quia, repellat tempore
-								voluptatum.
+								We (DR Store) are providing good quality
+								products in low price. Here you can buy quality
+								products in low price. You can buy anything from
+								our App and Website.
+								<br />
+								<br />
+								We have a good inventory of products ranging
+								from apparel to cosmetics to home utility and
+								kitchen products and more. With over 40 lakh
+								products and 300+ products categories, DR Store
+								is sure to have everything you need. <br />{" "}
+								<br /> In our latest and New collections, you
+								will find all the popular & trending items at an
+								affordableprice, so you can be confident you're
+								in the market for new clothes, accessories, or
+								just some daily-use items for home, DR Wtore has
+								everything you need.
 							</p>
 						</div>
 					</div>

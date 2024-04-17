@@ -16,9 +16,10 @@ const Footer = () => {
 					<div className='footer-left'>
 						<h2>DR Store - Your Online Store</h2>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing
-							elit. Sed finibus viverra iaculis. Etiam vulputate
-							et justo eget scelerisque.
+							We (DR Store) are providing good quality products in
+							low price. Here you can buy quality products in low
+							price. You can buy anything from our App and
+							Website.
 						</p>
 						<div className='l-footer-item'>
 							<IoCallOutline />

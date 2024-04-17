@@ -11,6 +11,15 @@ const getProducts = async () => {
 		throw error;
 	}
 };
+const getProduct = async (productId) => {
+	try {
+		const response = await axios.get(`${base_url}product/${productId}`);
+		return response.data;
+	} catch (error) {
+		console.error("Error in fetching product:", error);
+		throw error;
+	}
+};
 const addToWishlist = async (productId) => {
 	try {
 		const response = await axios.put(
@@ -29,6 +38,7 @@ const addToWishlist = async (productId) => {
 
 const productService = {
 	getProducts,
+	getProduct,
 	addToWishlist,
 };
 export default productService;

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const FeaturedProduct = ({ product }) => {
-	const { title, tags, price, images } = product;
+	const { _id, title, tags, price, images } = product;
 
 	return (
 		<>
@@ -28,8 +28,10 @@ const FeaturedProduct = ({ product }) => {
 								price + (price * 20) / 100
 							}`}</del>
 						</div>
-						<Link to={"/"} className='featured-title'>
-							<h3 className='featured-product-name'>{title}</h3>
+						<Link to={`/product/${_id}`} className='featured-title'>
+							<h3 className='featured-product-name'>
+								{`${title.substr(0, 24)}....`}
+							</h3>
 						</Link>
 					</div>
 					<button className='featured-product-button'>

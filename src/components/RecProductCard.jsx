@@ -53,7 +53,12 @@ const RecProductCard = ({ product }) => {
 					</div>
 					<div className='product-content'>
 						<h3 className='title'>
-							<Link className='product-name'>{title}</Link>
+							<Link
+								to={`/product/${_id}`}
+								className='product-name'>{`${title.substr(
+								0,
+								40
+							)}....`}</Link>
 						</h3>
 						<ReactStars
 							count={5}
