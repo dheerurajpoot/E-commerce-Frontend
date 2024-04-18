@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { getWishlistItems } from "../features/auth/userSlice";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 const Wishlist = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	useEffect(() => {
 		dispatch(getWishlistItems());
 	});
@@ -33,6 +34,9 @@ const Wishlist = () => {
 							<div className='wishlist' key={index}>
 								<div className='wishlist-img'>
 									<img
+										onClick={() =>
+											navigate(`/product/${items?._id}`)
+										}
 										src={`${items.images[0].url}`}
 										alt='product Image'
 									/>

@@ -523,7 +523,7 @@ body, input, select, button{
 .card {
   position: relative;
   border-radius: 5px;
-  height: 440px;
+  height: 410px;
   overflow: hidden;
   width: 300px;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
@@ -548,7 +548,7 @@ body, input, select, button{
   border-radius: 10px;
   padding: 20px;
   position: absolute;
-  top: 56%;
+  top: 67%;
   width: 100%;
   transition: box-shadow .3s ease-in-out,
               top .3s ease-in-out;
@@ -556,7 +556,7 @@ body, input, select, button{
 
 .card:hover .details {
   box-shadow: 0 -5px 10px rgba(0,0,0,0.3);
-  top: 42%;
+  top: 50%;
 }
 
 
@@ -581,7 +581,12 @@ body, input, select, button{
   color: var(--secondary-color);
   cursor: pointer;
 }
-.product-options{
+.rate-wishlist{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+/* .product-options{
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -607,11 +612,11 @@ body, input, select, button{
 }
 .quantity span{
   cursor: pointer;
-  font-size: 18px;
-}
+  font-size: 18px; 
+}*/
 .card-wishlist{
   cursor: pointer;
-  color: #000;
+  color: var(--fourth-color);
 }
 .card-wishlist:hover{
   color: var(--secondary-color);
@@ -837,7 +842,7 @@ background-color: var(--primery-color);
 .empty-wishlist{
   font-size: 20px;
 }
-/* cart page */
+/* cart page start here */
 
 .cart-container{
   display: flex;
@@ -872,6 +877,7 @@ background-color: var(--primery-color);
 
 .cart-product-info {
   padding: 1rem 0;
+  width: 35%;
 }
 
 .product-info-wrapper {
@@ -882,10 +888,23 @@ background-color: var(--primery-color);
 
 .cart-product-image {
   height: auto;
-  width: 3rem;
+  width: 5rem;
   margin-right: 1rem;
 }
-
+.cart-color{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cart-color p{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid var(--primery-color);
+}
+.cart-product-title{
+  text-align: left;
+}
 .cart-product-name {
   font-weight: 600;
 }
@@ -914,7 +933,9 @@ background-color: var(--primery-color);
   margin-right: 0.5rem;
   cursor: pointer;
 }
-
+.remove-cart-btn{
+  cursor: pointer;
+}
 .summary-container {
   display: flex;
   justify-content: space-between;
@@ -1161,7 +1182,7 @@ background-color: var(--primery-color);
   align-items: center;
   justify-content: center;
   background-color: #f3f4f6; 
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -1184,7 +1205,9 @@ background-color: var(--primery-color);
   background-color: #089b52; 
   color: #ffffff; 
 }
-
+.f-product-link{
+  text-decoration: none;
+}
 /* Track Order section start here  */
 
 .track-container{

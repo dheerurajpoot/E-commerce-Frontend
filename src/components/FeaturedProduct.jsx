@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FiEye } from "react-icons/fi";
 
 const FeaturedProduct = ({ product }) => {
 	const { _id, title, tags, price, images } = product;
@@ -10,12 +11,13 @@ const FeaturedProduct = ({ product }) => {
 				<div className='f-product-container'>
 					<div className='featured-product-container'>
 						{images.map((image, index) => (
-							<img
-								key={index}
-								className='featured-product-image'
-								src={`${image.url}`}
-								alt=''
-							/>
+							<Link key={index} to={`/product/${_id}`}>
+								<img
+									className='featured-product-image'
+									src={`${image.url}`}
+									alt=''
+								/>
+							</Link>
 						))}
 						<div className='featured-product-badge-container'>
 							<p className='featured-product-badge'>{tags}</p>
@@ -34,10 +36,14 @@ const FeaturedProduct = ({ product }) => {
 							</h3>
 						</Link>
 					</div>
-					<button className='featured-product-button'>
-						<div className='default-state'>Add to Cart</div>
-						<div className='plus-state'>+</div>
-					</button>
+					<Link to={`/product/${_id}`} className='f-product-link'>
+						<button className='featured-product-button'>
+							<div className='default-state'>View Details</div>
+							<div className='plus-state'>
+								<FiEye />
+							</div>
+						</button>
+					</Link>
 				</div>
 			</section>
 		</>

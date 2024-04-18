@@ -2,10 +2,10 @@ import React from "react";
 import { FaRegHeart } from "react-icons/fa";
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
-import { HiOutlineShoppingCart } from "react-icons/hi";
 import { addToWishlist } from "../features/products/productSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { FiEye } from "react-icons/fi";
 
 const RecProductCard = ({ product }) => {
 	const { _id, title, price, images, tags } = product;
@@ -44,9 +44,10 @@ const RecProductCard = ({ product }) => {
 							</li>
 							<li>
 								<Link
+									to={`/product/${_id}`}
 									className='product-icon'
 									data-tip='Add to Cart'>
-									<HiOutlineShoppingCart size={25} />
+									<FiEye size={25} />
 								</Link>
 							</li>
 						</ul>

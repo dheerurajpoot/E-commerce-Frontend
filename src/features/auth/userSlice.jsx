@@ -44,6 +44,33 @@ export const getWishlistItems = createAsyncThunk(
 		}
 	}
 );
+export const addToCart = createAsyncThunk(
+	"auth/cart",
+	async (cartData, thunkAPI) => {
+		try {
+			return await userService.addToCart(cartData);
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error);
+		}
+	}
+);
+export const getCart = createAsyncThunk("auth/get-cart", async (thunkAPI) => {
+	try {
+		return await userService.getCart();
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error);
+	}
+});
+export const removeCartItem = createAsyncThunk(
+	"auth/remove-cart-product",
+	async (id, thunkAPI) => {
+		try {
+			return await userService.removeCartItem(id);
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error);
+		}
+	}
+);
 
 export const userSlice = createSlice({
 	name: "auth",
@@ -111,6 +138,66 @@ export const userSlice = createSlice({
 				state.isError = true;
 				state.isSuccess = false;
 				state.message = action.error;
+			})
+			.addCase(addToCart.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(addToCart.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isError = false;
+				state.isSuccess = true;
+				state.cardProduct = action.payload;
+				state.message = "Success";
+				if (state.isSuccess === true) {
+					toast.success("Product Added to Cart Succuessfully");
+				}
+			})
+			.addCase(addToCart.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.isSuccess = false;
+				state.message = action.error;
+				if (state.isError === true) {
+					toast.error("Something Went Wrong!");
+				}
+			})
+			.addCase(getCart.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(getCart.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isError = false;
+				state.isSuccess = true;
+				state.getCart = action.payload;
+				state.message = "Success";
+			})
+			.addCase(getCart.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.isSuccess = false;
+				state.message = action.error;
+			})
+			.addCase(removeCartItem.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(removeCartItem.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isError = false;
+				state.isSuccess = true;
+				state.removedCartItem = action.payload;
+				state.message = "Success";
+				if (state.isSuccess === true) {
+					toast.success("Product Removed from Cart Succuessfully");
+				}
+			})
+			.addCase(removeCartItem.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.isSuccess = false;
+				state.message = action.error;
+				if (state.isError === true) {
+					toast.error("Something Went Wrong!");
+				}
 			});
 	},
 });

@@ -1,22 +1,47 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist, getProduct } from "../features/products/productSlice";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import ReactStars from "react-rating-stars-component";
+import { addToCart, getCart } from "../features/auth/userSlice";
 
 const SingleProduct = () => {
+	const [color, setColor] = useState(null);
+	const [quantity, setQuantity] = useState(1);
+	const [cartItem, setCartItem] = useState(false);
 	const dispatch = useDispatch();
 	const location = useLocation();
 	const productId = location.pathname.split("/")[2];
 	useEffect(() => {
 		dispatch(getProduct(productId));
+		dispatch(getCart());
 		window.scrollTo(0, 0);
 	}, [dispatch]);
 	const product = useSelector((state) => state.product?.product);
+	const cartProducts = useSelector((state) => state.auth?.getCart);
+
 	const addItemToWishlist = (prodId) => {
 		dispatch(addToWishlist(prodId));
 		toast.success("Product Added to Wishlist!");
+	};
+
+	useEffect(() => {
+		for (let i = 0; i < cartProducts?.length; i++) {
+			if (productId === cartProducts[i]?.productId?._id) {
+				setCartItem(true);
+			}
+		}
+	});
+	const addProductToCart = () => {
+		if (color === null) {
+			toast.error("Please Choose Color");
+			return false;
+		} else {
+			dispatch(
+				addToCart({ productId, quantity, color, price: product?.price })
+			);
+		}
 	};
 	return (
 		<>
@@ -65,8 +90,9 @@ const SingleProduct = () => {
 									</span>
 								</div>
 							</div>
-							<div className='size-color'>
-								{/* <ul className='size-color-ul'>
+							{cartItem === false && (
+								<div className='size-color'>
+									{/* <ul className='size-color-ul'>
 									<p>Size :-</p>
 									<li className='bg'>7</li>
 									<li className='bg'>8</li>
@@ -74,35 +100,47 @@ const SingleProduct = () => {
 									<li className='bg'>10</li>
 									<li className='bg'>11</li>
 								</ul> */}
-								<ul className='size-color-ul'>
-									<p>Color :-</p>
-									{product?.color.map((item, index) => {
-										return (
-											<li
-												style={{
-													background: `${item}`,
-												}}
-												className='yellow p-color'
-												key={index}></li>
-										);
-									})}
-									{/* <li className='black p-color'></li> */}
-									{/* <li className='blue p-color'></li> */}
-								</ul>
-							</div>
-							<div className='single-product-options'>
-								<div className='size-options'>
-									<span className='single-label'>
-										Quantity:
-									</span>
-									<div className='quantity-button'>
-										<input
-											type='number'
-											placeholder='Quantity'
-										/>
+
+									<ul className='size-color-ul'>
+										<p>Color :-</p>
+										{product?.color?.map((item, index) => {
+											return (
+												<li
+													style={{
+														background: `${item}`,
+													}}
+													className='p-color'
+													key={index}
+													onClick={() =>
+														setColor(item)
+													}></li>
+											);
+										})}
+									</ul>
+								</div>
+							)}
+
+							{cartItem === false && (
+								<div className='single-product-options'>
+									<div className='size-options'>
+										<span className='single-label'>
+											Quantity:
+										</span>
+										<div className='quantity-button'>
+											<input
+												type='number'
+												min={1}
+												placeholder='Quantity'
+												onChange={(e) =>
+													setQuantity(e.target.value)
+												}
+												value={quantity}
+											/>
+										</div>
 									</div>
 								</div>
-							</div>
+							)}
+
 							<div className='product-details-row'>
 								<div className='single-price'>
 									<span className='single-label'>Price:</span>
@@ -118,9 +156,20 @@ const SingleProduct = () => {
 								</div>
 							</div>
 							<div className='action-buttons'>
-								<button className='add-to-cart'>
-									Add to Cart
-								</button>
+								{cartItem ? (
+									<Link to={"/cart"}>
+										<button className='add-to-cart'>
+											Go to Cart
+										</button>
+									</Link>
+								) : (
+									<button
+										onClick={() => addProductToCart()}
+										className='add-to-cart'>
+										Add to Cart
+									</button>
+								)}
+
 								<button
 									onClick={(e) =>
 										addItemToWishlist(product?._id)

@@ -19,7 +19,7 @@ const loginUser = async (userData) => {
 		}
 		return response.data;
 	} catch (error) {
-		console.error("Error white logging in user :", error);
+		console.error("Error in logging in user :", error);
 		throw error;
 	}
 };
@@ -29,7 +29,41 @@ const getWishlistItems = async () => {
 
 		return response.data;
 	} catch (error) {
-		console.error("Error white logging in user :", error);
+		console.error("Error in logging in user :", error);
+		throw error;
+	}
+};
+const addToCart = async (cartData) => {
+	try {
+		const response = await axios.post(
+			`${base_url}user/cart`,
+			cartData,
+			config
+		);
+		return response.data;
+	} catch (error) {
+		console.error("Error in adding to cart :", error);
+		throw error;
+	}
+};
+const getCart = async () => {
+	try {
+		const response = await axios.get(`${base_url}user/cart`, config);
+		return response.data;
+	} catch (error) {
+		console.error("Error in getting to cart items :", error);
+		throw error;
+	}
+};
+const removeCartItem = async (id) => {
+	try {
+		const response = await axios.delete(
+			`${base_url}user/remove-cart-product/${id}`,
+			config
+		);
+		return response.data;
+	} catch (error) {
+		console.error("Error in deleting cart product :", error);
 		throw error;
 	}
 };
@@ -38,5 +72,8 @@ const userService = {
 	registerUser,
 	loginUser,
 	getWishlistItems,
+	addToCart,
+	getCart,
+	removeCartItem,
 };
 export default userService;

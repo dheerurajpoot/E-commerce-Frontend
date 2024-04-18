@@ -8,13 +8,14 @@ import { IoMenu } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../features/category/categorySlice";
-import { getWishlistItems } from "../features/auth/userSlice";
+import { getCart, getWishlistItems } from "../features/auth/userSlice";
 
 const Header = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(getCategory());
 		dispatch(getWishlistItems());
+		dispatch(getCart());
 	}, [dispatch]);
 
 	const totalCategory = useSelector((state) => state.category.category);
@@ -22,6 +23,8 @@ const Header = () => {
 	const wishlistItems = useSelector(
 		(state) => state.auth?.wishlist?.wishlist
 	);
+	const cartProducts = useSelector((state) => state.auth?.getCart);
+
 	return (
 		<>
 			<div className='header-container'>
@@ -130,7 +133,7 @@ const Header = () => {
 										size={25}
 									/>
 								</Link>
-								<span>0</span>
+								<span>{cartProducts?.length}</span>
 							</div>
 							<div className='user'>
 								<Link to={"/profile"} title=''>
