@@ -67,6 +67,18 @@ const removeCartItem = async (id) => {
 		throw error;
 	}
 };
+const updateCartQty = async (updatedData) => {
+	try {
+		const response = await axios.delete(
+			`${base_url}user/update-cart-product/${updatedData?.pId}/${updatedData?.quantity}`,
+			config
+		);
+		return response.data;
+	} catch (error) {
+		console.error("Error in updating cart product :", error);
+		throw error;
+	}
+};
 
 const userService = {
 	registerUser,
@@ -75,5 +87,6 @@ const userService = {
 	addToCart,
 	getCart,
 	removeCartItem,
+	updateCartQty,
 };
 export default userService;

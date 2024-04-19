@@ -43,6 +43,7 @@ const SingleProduct = () => {
 			);
 		}
 	};
+
 	return (
 		<>
 			<div className='single-product-container'>
@@ -130,7 +131,7 @@ const SingleProduct = () => {
 											<input
 												type='number'
 												min={1}
-												placeholder='Quantity'
+												placeholder='Qty'
 												onChange={(e) =>
 													setQuantity(e.target.value)
 												}

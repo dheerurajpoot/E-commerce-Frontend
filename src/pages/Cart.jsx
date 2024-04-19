@@ -1,23 +1,71 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart, removeCartItem } from "../features/auth/userSlice";
+import {
+	getCart,
+	removeCartItem,
+	updateCartQty,
+} from "../features/auth/userSlice";
 import { RxCross2 } from "react-icons/rx";
 
 const Cart = () => {
 	const dispatch = useDispatch();
+	const [cartSubTotal, setCartSubTotal] = useState(null);
+	const [cartProductDetails, setCartProductDetails] = useState(null);
 	useEffect(() => {
 		dispatch(getCart());
 		window.scrollTo(0, 0);
 	}, [dispatch]);
 
-	const cartProducts = useSelector((state) => state.auth?.getCart);
+	useEffect(() => {
+		if (cartProductDetails !== null) {
+			dispatch(
+				updateCartQty({
+					pId: cartProductDetails?.pId,
+					quantity: cartProductDetails?.newquantity,
+				})
+			);
+			setTimeout(() => {
+				dispatch(getCart());
+			}, 200);
+		}
+	}, [cartProductDetails]);
+
+	const cartProducts = useSelector((state) => state?.auth?.getCart);
 	const deleteCartItem = (id) => {
 		dispatch(removeCartItem(id));
 		setTimeout(() => {
 			dispatch(getCart());
 		}, 200);
+	};
+	let shippingCharge = 50;
+	useEffect(() => {
+		let cartSum = 0;
+		for (let i = 0; i < cartProducts?.length; i++) {
+			cartSum =
+				cartSum +
+				Number(cartProducts[i]?.quantity * cartProducts[i]?.price);
+			setCartSubTotal(cartSum);
+		}
+	}, [cartProducts]);
+
+	const incrementQuantity = (id) => {
+		const newQuantity = cartProductDetails?.newquantity
+			? parseInt(cartProductDetails?.newquantity) + 1
+			: parseInt(cartProducts.find((item) => item._id === id).quantity) +
+			  1;
+		setCartProductDetails({ pId: id, newquantity: newQuantity });
+	};
+
+	const decrementQuantity = (id) => {
+		const newQuantity = cartProductDetails?.newquantity
+			? parseInt(cartProductDetails?.newquantity) - 1
+			: parseInt(cartProducts.find((item) => item._id === id).quantity) -
+			  1;
+		if (newQuantity >= 0) {
+			setCartProductDetails({ pId: id, newquantity: newQuantity });
+		}
 	};
 
 	return (
@@ -84,13 +132,42 @@ const Cart = () => {
 												</td>
 												<td className='cart-product-quantity'>
 													<div className='quantity-wrapper'>
-														<button className='cart-quantity-btn'>
+														<button
+															className='cart-quantity-btn'
+															onClick={() =>
+																decrementQuantity(
+																	item._id
+																)
+															}>
 															-
 														</button>
-														<p className='cart-quantity'>
-															{item?.quantity}
-														</p>
-														<button className='cart-quantity-btn'>
+														<input
+															type='number'
+															className='cart-quantity'
+															value={
+																cartProductDetails?.newquantity
+																	? cartProductDetails?.newquantity
+																	: item?.quantity
+															}
+															onChange={(e) =>
+																setCartProductDetails(
+																	{
+																		pId: item?._id,
+																		newquantity:
+																			e
+																				.target
+																				.value,
+																	}
+																)
+															}
+														/>
+														<button
+															className='cart-quantity-btn'
+															onClick={() =>
+																incrementQuantity(
+																	item._id
+																)
+															}>
 															+
 														</button>
 													</div>
@@ -149,23 +226,26 @@ const Cart = () => {
 										<p className='summary-label'>
 											Subtotal
 										</p>
-										<p className='summary-value'>$5.99</p>
+										<p className='summary-value'>{`₹ ${cartSubTotal}`}</p>
 									</div>
 									<div className='summary-item'>
 										<p className='summary-label'>
 											Shipping
 										</p>
-										<p className='summary-value'>{`₹ ${50}`}</p>
+										<p className='summary-value'>{`₹ ${shippingCharge}`}</p>
 									</div>
 									<hr className='separator' />
 									<div className='summary-item'>
 										<p className='total-label'>Total</p>
 										<div className='total-content'>
 											<p className='total-value'>
-												$7.98 USD
+												{`₹ ${
+													cartSubTotal +
+													shippingCharge
+												}`}
 											</p>
 											<p className='total-info'>
-												including VAT
+												including All Taxes
 											</p>
 										</div>
 									</div>
