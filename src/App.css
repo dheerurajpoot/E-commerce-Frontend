@@ -1856,7 +1856,126 @@ background-color: var(--primery-color);
   height: 60px;
 }
 
+/* checkout page start here */
+.checkout-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+}
+.checkout-d-flex{
+  display: flex;
+  flex-direction: row;
+  background: #f6f6f6;
+  border-radius: 0 0 5px 5px;
+  padding: 25px;
+}
+.checkout-form{
+  width: 60%;
+}
+.Yorder{
+  flex: 2;
+}
+.checkout-title{
+  border-radius:5px 5px 0 0 ;
+  background: var(--primery-color);
+  padding: 20px;
+  color: #f6f6f6;
+}
+.checkout-main h2{
+  margin: 0;
+  padding-left: 15px; 
+}
+.required{
+  color: red;
+}
+.checkout-d-flex label, table{
+  display: block;
+  margin: 15px;
+}
+.checkout-d-flex label>span{
+  float: left;
+  width: 25%;
+  margin-top: 12px;
+  padding-right: 10px;
+}
+.checkout-d-flex input[type="text"], input[type="tel"], input[type="email"], select
+{
+  width: 70%;
+  height: 42px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border: 1px solid #dadada;
+  color: #888;
+  font-size: 16px;
+}
+.checkout-d-flex select{
+  width: 72%;
+  height: 45px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+.Yorder{
+  padding: 20px;
+  border: 1px solid #dadada;
+}
+.checkout-d-flex table{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.checkout-d-flex th{
+  border-bottom: 1px solid #dadada;
+  padding: 10px 0;
+}
+.checkout-d-flex tr>td:nth-child(1){
+  text-align: left;
+  color: #2d2d2a;
+}
+.checkout-d-flex tr>td:nth-child(2){
+  text-align: right;
+  color: var(--secondary-color);
+}
+.checkout-d-flex td{
+  border-bottom: 1px solid #dadada;
+  padding: 25px 25px 25px 0;
+}
 
+.checkout-d-flex p{
+  display: block;
+  color: #888;
+  margin: 0;
+  padding-left: 25px;
+}
+.Yorder>div{
+  padding: 15px 0; 
+}
+.checkout-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkout-d-flex button{
+  width: 50%;
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+  background: var(--primery-color);
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+}
+.checkout-d-flex button:hover{
+  cursor: pointer;
+  background: var(--secondary-color);
+}
+.total-ammount{
+  font-weight: 700;
+  font-size: 20px;
+}
 /* Order Summary Page */
 
 
