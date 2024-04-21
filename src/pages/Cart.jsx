@@ -223,26 +223,12 @@ const Cart = () => {
 								</div>
 								<div className='summary-content'>
 									<div className='summary-item'>
-										<p className='summary-label'>
-											Subtotal
+										<p className='total-label'>
+											Cart Total
 										</p>
-										<p className='summary-value'>{`₹ ${cartSubTotal}`}</p>
-									</div>
-									<div className='summary-item'>
-										<p className='summary-label'>
-											Shipping
-										</p>
-										<p className='summary-value'>{`₹ ${shippingCharge}`}</p>
-									</div>
-									<hr className='separator' />
-									<div className='summary-item'>
-										<p className='total-label'>Total</p>
 										<div className='total-content'>
 											<p className='total-value'>
-												{`₹ ${
-													cartSubTotal +
-													shippingCharge
-												}`}
+												{`₹ ${cartSubTotal}`}
 											</p>
 											<p className='total-info'>
 												including All Taxes

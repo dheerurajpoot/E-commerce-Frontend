@@ -1857,11 +1857,16 @@ background-color: var(--primery-color);
 }
 
 /* checkout page start here */
+
 .checkout-container{
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 50px 0;
+}
+.form-section{
+  display: flex;
+  justify-content: center;
 }
 .checkout-d-flex{
   display: flex;
@@ -1881,6 +1886,18 @@ background-color: var(--primery-color);
   background: var(--primery-color);
   padding: 20px;
   color: #f6f6f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.back-to-cart{
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  margin: 0px 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .checkout-main h2{
   margin: 0;
@@ -1899,7 +1916,7 @@ background-color: var(--primery-color);
   margin-top: 12px;
   padding-right: 10px;
 }
-.checkout-d-flex input[type="text"], input[type="tel"], input[type="email"], select
+.checkout-d-flex input[type="text"], .checkout-d-flex input[type="number"], .checkout-d-flex input[type="tel"], .checkout-d-flex input[type="email"], .checkout-d-flex select
 {
   width: 70%;
   height: 42px;
@@ -1960,7 +1977,7 @@ background-color: var(--primery-color);
 .checkout-d-flex button{
   width: 50%;
   margin-top: 10px;
-  padding: 10px;
+  padding: 12px 20px;
   border: none;
   border-radius: 30px;
   background: var(--primery-color);
