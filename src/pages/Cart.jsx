@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,6 +11,7 @@ import { RxCross2 } from "react-icons/rx";
 
 const Cart = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [cartSubTotal, setCartSubTotal] = useState(null);
 	const [cartProductDetails, setCartProductDetails] = useState(null);
 	useEffect(() => {
@@ -235,7 +236,9 @@ const Cart = () => {
 											</p>
 										</div>
 									</div>
-									<button className='checkout-btn'>
+									<button
+										onClick={() => navigate("/checkout")}
+										className='checkout-btn'>
 										Checkout
 									</button>
 								</div>

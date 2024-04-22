@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { FaArrowLeft } from "react-icons/fa";
+import axios from "axios";
+import { base_url } from "../utils/base_url";
+import { config } from "../utils/axiosConfig";
+import { createOrder } from "../features/auth/userSlice";
 
 const checkoutSchema = yup.object({
 	name: yup.string().required("Name is Required"),
@@ -15,7 +19,13 @@ const checkoutSchema = yup.object({
 });
 
 const Checkout = () => {
+	const [cartSubTotal, setCartSubTotal] = useState(null);
+	const [cartTotalQuantity, setCartTotalQuantity] = useState(null);
 	const [shippingInfo, setShippingInfo] = useState(null);
+	const [paymentInfo, setPaymentInfo] = useState({
+		razorpayPaymentId: "",
+		razorpayOrderId: "",
+	});
 
 	const dispatch = useDispatch();
 	const formik = useFormik({
@@ -31,14 +41,11 @@ const Checkout = () => {
 
 		validationSchema: checkoutSchema,
 		onSubmit: (values) => {
-			// console.log(JSON.stringify(values));
 			setShippingInfo(values);
+			checkoutHandler();
 			// formik.resetForm();
 		},
 	});
-	console.log(shippingInfo);
-	const [cartSubTotal, setCartSubTotal] = useState(null);
-	const [cartTotalQuantity, setCartTotalQuantity] = useState(null);
 
 	const cartProducts = useSelector((state) => state?.auth?.getCart);
 
@@ -55,6 +62,90 @@ const Checkout = () => {
 		}
 	}, [cartProducts]);
 	let shippingCharge = 50;
+
+	const loadScript = (src) => {
+		return new Promise((resolve) => {
+			const script = document.createElement("script");
+			script.src = src;
+			script.onload = () => {
+				resolve(true);
+			};
+			script.onerror = () => {
+				resolve(false);
+			};
+			document.body.appendChild(script);
+		});
+	};
+
+	const checkoutHandler = async () => {
+		const res = await loadScript(
+			"https://checkout.razorpay.com/v1/checkout.js"
+		);
+
+		if (!res) {
+			alert("Razorpay SDK is failed to Load");
+			return;
+		}
+		const response = await axios.post(
+			`${base_url}user/order/checkout`,
+			"",
+			config
+		);
+		if (!response) {
+			alert("Something Went Wrong!");
+			return;
+		}
+		const { amount, id: order_id, currency } = response.data.order;
+		const options = {
+			key: "rzp_test_SdOG1CYzMFFNZi",
+			amount: amount,
+			currency: currency,
+			name: "DR Store.",
+			description: "Test Transaction",
+			// image: { logo },
+			order_id: order_id,
+			handler: async function (response) {
+				const data = {
+					orderCreationId: order_id,
+					razorpayPaymentId: response.razorpay_payment_id,
+					razorpayOrderId: response.razorpay_order_id,
+				};
+
+				const result = await axios.post(
+					`${base_url}user/order/payment-verification`,
+					data,
+					config
+				);
+				setPaymentInfo({
+					razorpayPaymentId: response.razorpay_payment_id,
+					razorpayOrderId: response.razorpay_order_id,
+				});
+				dispatch(
+					createOrder({
+						totalPrice: cartSubTotal,
+						totalPriceAfterDiscount: cartSubTotal,
+						orderItems: [],
+						paymentInfo,
+						shippingInfo,
+					})
+				);
+			},
+			prefill: {
+				name: "DR Store",
+				email: "support@evtn.org",
+				contact: "+919026315148",
+			},
+			notes: {
+				address: "Kalyanpur kanpur",
+			},
+			theme: {
+				color: "#61dafb",
+			},
+		};
+
+		const paymentObject = new window.Razorpay(options);
+		paymentObject.open();
+	};
 
 	return (
 		<>
