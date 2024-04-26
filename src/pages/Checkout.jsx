@@ -22,6 +22,7 @@ const Checkout = () => {
 	const [cartSubTotal, setCartSubTotal] = useState(null);
 	const [cartTotalQuantity, setCartTotalQuantity] = useState(null);
 	const [shippingInfo, setShippingInfo] = useState(null);
+	const [cartProductState, setCartProductState] = useState([]);
 	const [paymentInfo, setPaymentInfo] = useState({
 		razorpayPaymentId: "",
 		razorpayOrderId: "",
@@ -42,7 +43,9 @@ const Checkout = () => {
 		validationSchema: checkoutSchema,
 		onSubmit: (values) => {
 			setShippingInfo(values);
-			checkoutHandler();
+			setTimeout(() => {
+				checkoutHandler();
+			}, 300);
 			// formik.resetForm();
 		},
 	});
@@ -77,6 +80,18 @@ const Checkout = () => {
 		});
 	};
 
+	useEffect(() => {
+		let items = [];
+		for (let i = 0; i < cartProducts?.length; i++) {
+			items.push({
+				product: cartProducts[i].productId._id,
+				quantity: cartProducts[i].quantity,
+				color: cartProducts[i].color,
+				price: cartProducts[i].price,
+			});
+			setCartProductState(items);
+		}
+	}, []);
 	const checkoutHandler = async () => {
 		const res = await loadScript(
 			"https://checkout.razorpay.com/v1/checkout.js"
@@ -123,8 +138,8 @@ const Checkout = () => {
 				dispatch(
 					createOrder({
 						totalPrice: cartSubTotal,
-						totalPriceAfterDiscount: cartSubTotal,
-						orderItems: [],
+						priceAfterDiscount: cartSubTotal,
+						orderItems: cartProductState,
 						paymentInfo,
 						shippingInfo,
 					})
