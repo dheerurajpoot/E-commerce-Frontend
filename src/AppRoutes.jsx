@@ -18,6 +18,8 @@ import ShippingPolicy from "./pages/ShippingPolicy";
 import Profile from "./pages/Profile";
 import Faq from "./pages/Faq";
 import Checkout from "./pages/Checkout";
+import { ProtectedRoutes } from "./routing/ProtectedRoutes";
+import { OpenRoutes } from "./routing/OpenRoutes";
 
 const AppRoutes = () => {
 	return (
@@ -32,12 +34,40 @@ const AppRoutes = () => {
 							element={<SingleProduct />}
 						/>
 						<Route path='/sale' element={<Sale />} />
-						<Route path='/cart' element={<Cart />} />
-						<Route path='/profile' element={<Profile />} />
+						<Route
+							path='/cart'
+							element={
+								<ProtectedRoutes>
+									<Cart />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
+							path='/profile'
+							element={
+								<ProtectedRoutes>
+									<Profile />
+								</ProtectedRoutes>
+							}
+						/>
 						<Route path='/track-order' element={<TrackOrder />} />
-						<Route path='/wishlist' element={<Wishlist />} />
+						<Route
+							path='/wishlist'
+							element={
+								<ProtectedRoutes>
+									<Wishlist />
+								</ProtectedRoutes>
+							}
+						/>
 						<Route path='/contact' element={<Contact />} />
-						<Route path='/checkout' element={<Checkout />} />
+						<Route
+							path='/checkout'
+							element={
+								<ProtectedRoutes>
+									<Checkout />
+								</ProtectedRoutes>
+							}
+						/>
 						<Route path='/faq' element={<Faq />} />
 						<Route
 							path='/shipping-policy'
@@ -53,7 +83,14 @@ const AppRoutes = () => {
 						/>
 						<Route path='/about' element={<About />} />
 						<Route path='/sign-in' element={<Login />} />
-						<Route path='/sign-up' element={<SignUp />} />
+						<Route
+							path='/sign-up'
+							element={
+								<OpenRoutes>
+									<SignUp />
+								</OpenRoutes>
+							}
+						/>
 					</Route>
 				</Routes>
 			</BrowserRouter>

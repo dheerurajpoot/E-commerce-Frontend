@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import ReactStars from "react-rating-stars-component";
 import { addToCart, getCart } from "../features/auth/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const SingleProduct = () => {
 	const [color, setColor] = useState(null);
@@ -12,6 +13,7 @@ const SingleProduct = () => {
 	const [cartItem, setCartItem] = useState(false);
 	const dispatch = useDispatch();
 	const location = useLocation();
+	const navigate = useNavigate();
 	const productId = location.pathname.split("/")[2];
 	useEffect(() => {
 		dispatch(getProduct(productId));
@@ -41,6 +43,7 @@ const SingleProduct = () => {
 			dispatch(
 				addToCart({ productId, quantity, color, price: product?.price })
 			);
+			navigate("/cart");
 		}
 	};
 
