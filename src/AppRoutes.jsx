@@ -20,6 +20,7 @@ import Faq from "./pages/Faq";
 import Checkout from "./pages/Checkout";
 import { ProtectedRoutes } from "./routing/ProtectedRoutes";
 import { OpenRoutes } from "./routing/OpenRoutes";
+import Orders from "./pages/Orders";
 
 const AppRoutes = () => {
 	return (
@@ -50,7 +51,14 @@ const AppRoutes = () => {
 								</ProtectedRoutes>
 							}
 						/>
-						<Route path='/track-order' element={<TrackOrder />} />
+						<Route
+							path='/track-order'
+							element={
+								<ProtectedRoutes>
+									<TrackOrder />
+								</ProtectedRoutes>
+							}
+						/>
 						<Route
 							path='/wishlist'
 							element={
@@ -65,6 +73,14 @@ const AppRoutes = () => {
 							element={
 								<ProtectedRoutes>
 									<Checkout />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
+							path='/my-orders'
+							element={
+								<ProtectedRoutes>
+									<Orders />
 								</ProtectedRoutes>
 							}
 						/>

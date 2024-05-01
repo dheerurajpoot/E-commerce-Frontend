@@ -92,6 +92,15 @@ const createOrder = async (orderData) => {
 		throw error;
 	}
 };
+const getUserOrders = async () => {
+	try {
+		const response = await axios.get(`${base_url}user/get-orders`, config);
+		return response.data;
+	} catch (error) {
+		console.error("Error in getting Orders:", error);
+		throw error;
+	}
+};
 
 const userService = {
 	registerUser,
@@ -102,5 +111,6 @@ const userService = {
 	removeCartItem,
 	updateCartQty,
 	createOrder,
+	getUserOrders,
 };
 export default userService;

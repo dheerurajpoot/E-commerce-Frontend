@@ -91,6 +91,16 @@ export const createOrder = createAsyncThunk(
 		}
 	}
 );
+export const getUserOrders = createAsyncThunk(
+	"auth/order/get-orders",
+	async (thunkAPI) => {
+		try {
+			return await userService.getUserOrders();
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error);
+		}
+	}
+);
 
 export const userSlice = createSlice({
 	name: "auth",
@@ -262,6 +272,21 @@ export const userSlice = createSlice({
 				if (state.isError === true) {
 					toast.error("Something Went Wrong!");
 				}
+			})
+			.addCase(getUserOrders.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(getUserOrders.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isError = false;
+				state.isSuccess = true;
+				state.userOrders = action.payload;
+			})
+			.addCase(getUserOrders.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.isSuccess = false;
+				state.message = action.error;
 			});
 	},
 });
