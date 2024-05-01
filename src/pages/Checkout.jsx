@@ -21,12 +21,7 @@ const checkoutSchema = yup.object({
 const Checkout = () => {
 	const [cartSubTotal, setCartSubTotal] = useState(null);
 	const [cartTotalQuantity, setCartTotalQuantity] = useState(null);
-	const [shippingInfo, setShippingInfo] = useState(null);
 	const [cartProductState, setCartProductState] = useState([]);
-	const [paymentInfo, setPaymentInfo] = useState({
-		razorpayPaymentId: "",
-		razorpayOrderId: "",
-	});
 
 	const dispatch = useDispatch();
 	const formik = useFormik({
@@ -42,14 +37,12 @@ const Checkout = () => {
 
 		validationSchema: checkoutSchema,
 		onSubmit: (values) => {
-			setShippingInfo(values);
 			setTimeout(() => {
 				checkoutHandler();
 			}, 300);
 			// formik.resetForm();
 		},
 	});
-
 	const cartProducts = useSelector((state) => state?.auth?.getCart);
 
 	useEffect(() => {
@@ -79,19 +72,18 @@ const Checkout = () => {
 			document.body.appendChild(script);
 		});
 	};
-
 	useEffect(() => {
 		let items = [];
 		for (let i = 0; i < cartProducts?.length; i++) {
 			items.push({
-				product: cartProducts[i].productId._id,
-				quantity: cartProducts[i].quantity,
-				color: cartProducts[i].color,
-				price: cartProducts[i].price,
+				product: cartProducts[i].productId?._id,
+				quantity: cartProducts[i]?.quantity,
+				color: cartProducts[i]?.color[0],
+				price: cartProducts[i]?.price,
 			});
-			setCartProductState(items);
 		}
-	}, []);
+		setCartProductState(items);
+	}, [cartProducts]);
 	const checkoutHandler = async () => {
 		const res = await loadScript(
 			"https://checkout.razorpay.com/v1/checkout.js"
@@ -103,7 +95,7 @@ const Checkout = () => {
 		}
 		const response = await axios.post(
 			`${base_url}user/order/checkout`,
-			"",
+			{ amount: cartSubTotal + shippingCharge },
 			config
 		);
 		if (!response) {
@@ -119,6 +111,7 @@ const Checkout = () => {
 			description: "Test Transaction",
 			// image: { logo },
 			order_id: order_id,
+
 			handler: async function (response) {
 				const data = {
 					orderCreationId: order_id,
@@ -131,17 +124,17 @@ const Checkout = () => {
 					data,
 					config
 				);
-				setPaymentInfo({
-					razorpayPaymentId: response.razorpay_payment_id,
-					razorpayOrderId: response.razorpay_order_id,
-				});
+
 				dispatch(
 					createOrder({
 						totalPrice: cartSubTotal,
 						priceAfterDiscount: cartSubTotal,
 						orderItems: cartProductState,
-						paymentInfo,
-						shippingInfo,
+						paymentInfo: {
+							razorpayPaymentId: response.razorpay_payment_id,
+							razorpayOrderId: response.razorpay_order_id,
+						},
+						shippingInfo: formik.values,
 					})
 				);
 			},
