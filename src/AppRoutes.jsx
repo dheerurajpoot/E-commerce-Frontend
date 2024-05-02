@@ -21,6 +21,8 @@ import Checkout from "./pages/Checkout";
 import { ProtectedRoutes } from "./routing/ProtectedRoutes";
 import { OpenRoutes } from "./routing/OpenRoutes";
 import Orders from "./pages/Orders";
+import ForgetPassword from "./pages/ForgetPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 const AppRoutes = () => {
 	return (
@@ -99,6 +101,14 @@ const AppRoutes = () => {
 						/>
 						<Route path='/about' element={<About />} />
 						<Route path='/sign-in' element={<Login />} />
+						<Route
+							path='/reset-password/:token'
+							element={<ResetPassword />}
+						/>
+						<Route
+							path='/forget-password'
+							element={<ForgetPassword />}
+						/>
 						<Route
 							path='/sign-up'
 							element={

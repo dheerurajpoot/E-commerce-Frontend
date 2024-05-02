@@ -116,6 +116,32 @@ const updateProfile = async (data) => {
 		throw error;
 	}
 };
+// forget password
+
+const forgetPasswordToken = async (data) => {
+	try {
+		const response = await axios.post(
+			`${base_url}user/forgot-password-token`,
+			data
+		);
+		return response.data;
+	} catch (error) {
+		console.error("Error in reset password link:", error);
+		throw error;
+	}
+};
+const resetPassword = async (data) => {
+	try {
+		const response = await axios.put(
+			`${base_url}user/reset-password/${data?.token}`,
+			{ password: data?.password }
+		);
+		return response.data;
+	} catch (error) {
+		console.error("Error in reset password :", error);
+		throw error;
+	}
+};
 
 const userService = {
 	registerUser,
@@ -128,5 +154,7 @@ const userService = {
 	createOrder,
 	getUserOrders,
 	updateProfile,
+	forgetPasswordToken,
+	resetPassword,
 };
 export default userService;

@@ -1676,7 +1676,7 @@ background-color: var(--primery-color);
   border: 1px solid #cbd5e0;
   background-color: #edf2f7;
   color: #4a5568;
-  font-size: 0.875rem;
+  font-size: 16px;
 }
 
 .form-checkbox {
@@ -2260,6 +2260,21 @@ background-color: var(--primery-color);
 }
 .profile-update-form{
   width: 40%;
+}
+.reset-password-title{
+  margin: 20px 0;
+  text-align: center;
+}
+/* reset password page  */
+.reset-password-container, .password-form-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 30px 0;
+}
+.signin-form-container h1{
+  margin: 15px 0;
 }
 /* my Orders page start here */
 

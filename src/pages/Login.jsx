@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/auth/userSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -26,12 +26,16 @@ const Login = () => {
 		validationSchema: loginSchema,
 		onSubmit: (values) => {
 			dispatch(loginUser(values));
-			setTimeout(() => {
-				navigate("/");
-				window.location.reload();
-			}, 300);
 		},
 	});
+	const loggedInUser = useSelector((state) => state.auth);
+
+	if (loggedInUser?.isSuccess) {
+		setTimeout(() => {
+			navigate("/");
+			window.location.reload();
+		}, 300);
+	}
 
 	return (
 		<>

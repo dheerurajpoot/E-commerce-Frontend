@@ -44,6 +44,7 @@ const SingleProduct = () => {
 				addToCart({ productId, quantity, color, price: product?.price })
 			);
 			navigate("/cart");
+			dispatch(getCart());
 		}
 	};
 

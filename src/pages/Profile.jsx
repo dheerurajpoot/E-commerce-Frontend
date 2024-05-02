@@ -6,6 +6,7 @@ import Orders from "./Orders";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { updateProfile } from "../features/auth/userSlice";
+import ForgetPassword from "./ForgetPassword";
 
 const profileUpdateSchema = yup.object({
 	email: yup
@@ -67,7 +68,14 @@ const Profile = () => {
 								<Orders />
 							</TabPanel>
 							<TabPanel>
-								<div className='signin-form-container'>
+								<div className='signin-form-container password-form-container'>
+									<div className='reset-password-title'>
+										<h1>Update Your Profile Details</h1>
+										<p>
+											Enter your new details below which
+											you want to update!
+										</p>
+									</div>
 									<div className='signin-form profile-update-form'>
 										<form
 											onSubmit={formik.handleSubmit}
@@ -159,73 +167,7 @@ const Profile = () => {
 								</div>
 							</TabPanel>
 							<TabPanel>
-								<div className='signin-form-container'>
-									<div className='signin-form profile-update-form'>
-										<form
-											// onSubmit={formik.handleSubmit}
-											className='signin-form-fields'
-											action='#'>
-											<div className='form-field'>
-												<label
-													htmlFor='email'
-													className='form-label'>
-													Your email
-												</label>
-												<input
-													type='email'
-													name='email'
-													id='email'
-													className='form-input'
-													placeholder='name@drstore.com'
-													// value={formik.values.email}
-													// onChange={formik.handleChange(
-													// 	"email"
-													// )}
-													// onBlur={formik.handleBlur(
-													// 	"email"
-													// )}
-												/>
-												{/* <div className='error'>
-													{formik.touched.email &&
-														formik.errors.email}
-												</div> */}
-											</div>
-											<div className='form-field'>
-												<label
-													htmlFor='password'
-													className='form-label'>
-													Password
-												</label>
-												<input
-													type='password'
-													name='password'
-													id='password'
-													placeholder='••••••••'
-													className='form-input'
-													// value={
-													// 	formik.values.password
-													// }
-													// onChange={formik.handleChange(
-													// 	"password"
-													// )}
-													// onBlur={formik.handleBlur(
-													// 	"password"
-													// )}
-												/>
-												{/* <div className='error'>
-													{formik.touched.password &&
-														formik.errors.password}
-												</div> */}
-											</div>
-
-											<button
-												type='submit'
-												className='signin-button'>
-												Update Password
-											</button>
-										</form>
-									</div>
-								</div>
+								<ForgetPassword />
 							</TabPanel>
 						</Tabs>
 					</div>
