@@ -101,6 +101,21 @@ const getUserOrders = async () => {
 		throw error;
 	}
 };
+// update user details
+
+const updateProfile = async (data) => {
+	try {
+		const response = await axios.put(
+			`${base_url}user/update-user`,
+			data,
+			config
+		);
+		return response.data;
+	} catch (error) {
+		console.error("Error in updating details:", error);
+		throw error;
+	}
+};
 
 const userService = {
 	registerUser,
@@ -112,5 +127,6 @@ const userService = {
 	updateCartQty,
 	createOrder,
 	getUserOrders,
+	updateProfile,
 };
 export default userService;

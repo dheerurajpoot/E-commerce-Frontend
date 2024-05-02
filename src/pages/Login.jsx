@@ -28,6 +28,7 @@ const Login = () => {
 			dispatch(loginUser(values));
 			setTimeout(() => {
 				navigate("/");
+				window.location.reload();
 			}, 300);
 		},
 	});

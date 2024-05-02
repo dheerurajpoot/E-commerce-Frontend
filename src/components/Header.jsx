@@ -25,6 +25,10 @@ const Header = () => {
 	);
 	const cartProducts = useSelector((state) => state.auth?.getCart);
 
+	const handleLogout = () => {
+		localStorage.clear();
+		window.location.reload();
+	};
 	return (
 		<>
 			<div className='header-container'>
@@ -40,9 +44,18 @@ const Header = () => {
 							</div>
 						</div>
 						<div className='header-top-sections '>
-							<Link to={"/sign-in"} className='top-checkout'>
-								<p>Login</p>
-							</Link>
+							{loggedUser && loggedUser ? (
+								<Link
+									onClick={handleLogout}
+									className='top-checkout'>
+									<p>Logout</p>
+								</Link>
+							) : (
+								<Link to={"/sign-in"} className='top-checkout'>
+									<p>Login</p>
+								</Link>
+							)}
+
 							<span className='menu-line'></span>
 							<Link to={"/profile"} className='top-checkout'>
 								<p>
@@ -121,9 +134,15 @@ const Header = () => {
 									to={"wishlist"}
 									className='header-wishlist'>
 									<FaRegHeart color='#fff' size={25} />
-									<span className='wishlist-count'>
-										{wishlistItems?.length}
-									</span>
+									{loggedUser && loggedUser ? (
+										<span className='wishlist-count'>
+											{wishlistItems?.length !== 0
+												? wishlistItems?.length
+												: 0}
+										</span>
+									) : (
+										""
+									)}
 								</Link>
 							</div>
 							<div className='cart'>
@@ -133,7 +152,15 @@ const Header = () => {
 										size={25}
 									/>
 								</Link>
-								<span>{cartProducts?.length}</span>
+								{loggedUser && loggedUser ? (
+									<span>
+										{cartProducts?.length !== 0
+											? cartProducts?.length
+											: 0}
+									</span>
+								) : (
+									""
+								)}
 							</div>
 							<div className='user'>
 								<Link to={"/profile"} title=''>

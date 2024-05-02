@@ -2223,13 +2223,44 @@ background-color: var(--primery-color);
 .error{
   color: red;
 }
+/* profile page start here  */
+
 .profile-container{
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 40px 0;
 }
-
+.profile-title{
+  text-align: center;
+}
+.profile-name{
+  margin: 20px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+.profile-tablist{
+  background: var(--primery-color);
+  font-size: 18px;
+  margin: 20px 0;
+  color: #fff;
+  padding: 10px 20px;
+}
+.profile-details{
+  margin-top: 40px;
+}
+.profile-items span{
+  font-size: 18px;
+}
+.profile-items{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.profile-update-form{
+  width: 40%;
+}
 /* my Orders page start here */
 
 .order-container{
