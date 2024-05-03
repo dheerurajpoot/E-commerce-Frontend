@@ -136,7 +136,7 @@ const Header = () => {
 												id='search_text'
 												placeholder='Search by Category or products ..'
 												value={searchQuery}
-												onChange={handleSearchChange} // Attach onChange event handler
+												onChange={handleSearchChange}
 											/>
 
 											<IoSearchSharp

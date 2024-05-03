@@ -4,6 +4,7 @@ import {
 	addToWishlist,
 	getProduct,
 	getProducts,
+	rateProduct,
 } from "../features/products/productSlice";
 import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -62,6 +63,29 @@ const SingleProduct = () => {
 		(product) => product?.tags === "popular"
 	);
 
+	const [star, setStar] = useState(null);
+	const [comment, setComment] = useState(null);
+
+	const addProductRating = () => {
+		if (star === null) {
+			toast.error("Please choose star rating");
+			return false;
+		} else if (comment === null) {
+			toast.error("Please Write a Review first.");
+			return false;
+		} else {
+			dispatch(
+				rateProduct({
+					star: star,
+					comment: comment,
+					productId: productId,
+				})
+			);
+			setTimeout(() => {
+				dispatch(getProduct(productId));
+			}, 200);
+		}
+	};
 	return (
 		<>
 			<div className='single-product-container'>
@@ -202,7 +226,7 @@ const SingleProduct = () => {
 								<p>
 									Free shipping and returns available on all
 									orders. <br /> We ship all orders with in{" "}
-									<b>5-10 business days.</b>
+									<b>5-10 business days</b>
 								</p>
 							</div>
 						</div>
@@ -218,37 +242,57 @@ const SingleProduct = () => {
 					<hr />
 					<div className='prod-review'>
 						<h2 className='prod-desc-heading'>Write a Review</h2>
-						<form action='#'>
+						<div>
+							<ReactStars
+								count={5}
+								value={3}
+								edit={true}
+								size={18}
+								activeColor='#FF504E'
+								onChange={(e) => {
+									setStar(e);
+								}}
+							/>
 							<textarea
 								type='text'
 								placeholder='Write your review here...'
 								rows='6'
 								cols='100'
 								className='review-input'
+								onChange={(e) => {
+									setComment(e.target.value);
+								}}
 							/>
 							<div className='review-submit-btn'>
-								<button type='submit' className='submit-review'>
+								<button
+									type='buttom'
+									onClick={addProductRating}
+									className='submit-review'>
 									Submit
 								</button>
 							</div>
-						</form>
-						<h2>Recent Reviews</h2>
-						<div className='recent-reviews'>
-							<h3>Anu Kumar</h3>
-							<p>
-								Lorem ipsum dolor sit, amet consectetur
-								adipisicing elit. Itaque, animi hic assumenda id
-								totam quia vitae sit laudantium molestiae neque?
-							</p>
 						</div>
-						<div className='recent-reviews'>
-							<h3>Anu Kumar</h3>
-							<p>
-								Lorem ipsum dolor sit, amet consectetur
-								adipisicing elit. Itaque, animi hic assumenda id
-								totam quia vitae sit laudantium molestiae neque?
-							</p>
-						</div>
+						{product && product?.rating.length !== 0 ? (
+							<h2>Recent Reviews</h2>
+						) : (
+							""
+						)}
+						{product &&
+							product?.rating.slice(0, 5)?.map((item, index) => {
+								return (
+									<div key={index} className='recent-reviews'>
+										<h3>{item?.postedBy?.name}</h3>
+										<ReactStars
+											count={5}
+											value={item?.star}
+											edit={false}
+											size={18}
+											activeColor='#FF504E'
+										/>
+										<p>{item?.comment}</p>
+									</div>
+								);
+							})}
 					</div>
 					<div className='popular-products'>
 						<h1>Popular Products</h1>
