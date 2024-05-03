@@ -9,7 +9,7 @@ const Sale = () => {
 		dispatch(getProducts());
 	}, [dispatch]);
 
-	const totalProduct = useSelector((state) => state.product.products);
+	const totalProduct = useSelector((state) => state?.product?.products);
 	const totalProducts = [...totalProduct].reverse();
 	const saleProducts = totalProducts.filter(
 		(product) => product.tags === "popular"

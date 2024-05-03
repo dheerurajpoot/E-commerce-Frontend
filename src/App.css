@@ -57,6 +57,7 @@ body, input, select, button{
   justify-content: center;
   align-items: center;
   gap: 20px;
+  width: 25%;
 }
 .logo img{
   width: 190px;
@@ -71,13 +72,14 @@ body, input, select, button{
   font-size: 14px;
   font-weight: 600;
 }
+.header-middle{
+  width: 60%;
+}
 .search {
-  padding-left: 25px;
   display: flex;
   align-items: center;
-  margin : auto;
-  width : 672px;
   height: 54px;
+  width: 100%;
   background-color : white;
   border-radius: 25px;
   -webkit-box-shadow: 0px 10px 38px 0px rgba(0,0,0,0.1);
@@ -90,8 +92,32 @@ body, input, select, button{
   display : flex;
   align-items: center;
   font-weight : medium ;
+  width: 20%;
 }
+.search-main-container{
+  width: 78%;
+  position: relative;
+}
+.search-products{
+  position: absolute;
+  z-index: 10;
+  top: 40px;
+  width: 90%;
 
+}
+.search-product-details{
+  background: #fff;
+  padding: 8px 10px;
+}
+.search-product-title{
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+}
+.search-product-title:hover{
+  color: var(--primery-color);
+}
 .text {
   padding-left:15px;
 }
@@ -102,7 +128,6 @@ body, input, select, button{
   height: 40px;
 }
 .search-main{
-  width: 95%;
   display: flex;
   align-items: center;
 }
@@ -125,9 +150,10 @@ body, input, select, button{
 }
 .header-right{
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
+  width: 15%;
 }
 .header-wishlist{
   position: relative;
@@ -1584,12 +1610,14 @@ background-color: var(--primery-color);
 }
 .prod-review{
   margin: 20px 0;
+  padding: 30px 50px;
+  background: rgb(243, 243, 243);
 }
 .review-submit-btn{
   display: flex;
   align-items: baseline;
   justify-content: flex-end;
-  margin-right: 16%;
+  margin-right: 10%;
   margin-top: 10px;
 }
 .submit-review{
@@ -1604,6 +1632,22 @@ background-color: var(--primery-color);
 }
 .submit-review:hover{
   background: var(--primery-color);
+}
+.recent-reviews{
+  margin: 30px 40px;
+  padding: 15px 20px;
+  border: .5px solid var(--fourth-color);
+  border-radius: 5px;
+  width: 80%;
+}
+/* Popular Product Section Start here */
+
+.popular-products{
+  margin-bottom: 40px;
+}
+.p-products{
+  display: flex;
+  gap: 20px;
 }
 /* login page start here */
 

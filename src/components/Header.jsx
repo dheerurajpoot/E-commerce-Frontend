@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
@@ -18,13 +18,28 @@ const Header = () => {
 		dispatch(getCart());
 	}, [dispatch]);
 
-	const totalCategory = useSelector((state) => state.category.category);
-	const loggedUser = useSelector((state) => state.auth.user);
+	const totalCategory = useSelector((state) => state?.category?.category);
+	const loggedUser = useSelector((state) => state?.auth?.user);
+	const products = useSelector((state) => state.product?.products);
 	const wishlistItems = useSelector(
 		(state) => state.auth?.wishlist?.wishlist
 	);
-	const cartProducts = useSelector((state) => state.auth?.getCart);
+	const cartProducts = useSelector((state) => state?.auth?.getCart);
 
+	const [searchQuery, setSearchQuery] = useState("");
+
+	const handleSearchChange = (event) => {
+		setSearchQuery(event.target.value);
+	};
+
+	const filteredProducts = products.filter((product) =>
+		product.title.toLowerCase().includes(searchQuery.toLowerCase())
+	);
+
+	const resetSearch = () => {
+		setSearchQuery("");
+	};
+	// logout user
 	const handleLogout = () => {
 		localStorage.clear();
 		window.location.reload();
@@ -113,17 +128,47 @@ const Header = () => {
 										</div>
 									</div>
 									<div className='line'></div>
-									<div className='search-main'>
-										<input
-											type='text'
-											className='search_text'
-											id='search_text'
-											placeholder='Search by Category or products ..'
-										/>
-										<IoSearchSharp
-											className='search_icon'
-											size={22}
-										/>
+									<div className='search-main-container'>
+										<div className='search-main'>
+											<input
+												type='text'
+												className='search_text'
+												id='search_text'
+												placeholder='Search by Category or products ..'
+												value={searchQuery}
+												onChange={handleSearchChange} // Attach onChange event handler
+											/>
+
+											<IoSearchSharp
+												className='search_icon'
+												size={22}
+											/>
+										</div>
+										<div className='search-products'>
+											{searchQuery && (
+												<div>
+													{filteredProducts.map(
+														(product, index) => (
+															<div
+																className='search-product-details'
+																key={index}>
+																<Link
+																	className='search-product-title'
+																	to={`/product/${product?._id}`}
+																	onClick={
+																		resetSearch
+																	}>
+																	{
+																		product?.title
+																	}
+																</Link>
+																{/* Display other details of the product */}
+															</div>
+														)
+													)}
+												</div>
+											)}
+										</div>
 									</div>
 								</div>
 							</div>

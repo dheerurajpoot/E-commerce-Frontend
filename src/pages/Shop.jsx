@@ -9,7 +9,7 @@ const Shop = () => {
 		dispatch(getProducts());
 	}, [dispatch]);
 
-	const totalProduct = useSelector((state) => state.product.products);
+	const totalProduct = useSelector((state) => state?.product?.products);
 	const totalProducts = [...totalProduct].reverse();
 	return (
 		<>

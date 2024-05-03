@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToWishlist, getProduct } from "../features/products/productSlice";
+import {
+	addToWishlist,
+	getProduct,
+	getProducts,
+} from "../features/products/productSlice";
 import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import ReactStars from "react-rating-stars-component";
 import { addToCart, getCart } from "../features/auth/userSlice";
 import { useNavigate } from "react-router-dom";
+import FeaturedProduct from "../components/FeaturedProduct";
 
 const SingleProduct = () => {
 	const [color, setColor] = useState(null);
@@ -20,8 +25,8 @@ const SingleProduct = () => {
 		dispatch(getCart());
 		window.scrollTo(0, 0);
 	}, [dispatch]);
-	const product = useSelector((state) => state.product?.product);
-	const cartProducts = useSelector((state) => state.auth?.getCart);
+	const product = useSelector((state) => state?.product?.product);
+	const cartProducts = useSelector((state) => state?.auth?.getCart);
 
 	const addItemToWishlist = (prodId) => {
 		dispatch(addToWishlist(prodId));
@@ -47,6 +52,15 @@ const SingleProduct = () => {
 			dispatch(getCart());
 		}
 	};
+
+	useEffect(() => {
+		dispatch(getProducts());
+	}, []);
+	const totalProduct = useSelector((state) => state?.product?.products);
+	const totalProducts = [...totalProduct].reverse();
+	const popularProducts = totalProducts.filter(
+		(product) => product?.tags === "popular"
+	);
 
 	return (
 		<>
@@ -183,6 +197,14 @@ const SingleProduct = () => {
 									Add to Wishlist
 								</button>
 							</div>
+							<div className='single-shipping-text'>
+								<h4>Shipping & Returns</h4>
+								<p>
+									Free shipping and returns available on all
+									orders. <br /> We ship all orders with in{" "}
+									<b>5-10 business days.</b>
+								</p>
+							</div>
 						</div>
 					</div>
 					<hr />
@@ -195,11 +217,12 @@ const SingleProduct = () => {
 					</div>
 					<hr />
 					<div className='prod-review'>
-						<h2 className='prod-desc-heading'>Review</h2>
+						<h2 className='prod-desc-heading'>Write a Review</h2>
 						<form action='#'>
 							<textarea
 								type='text'
-								rows='8'
+								placeholder='Write your review here...'
+								rows='6'
 								cols='100'
 								className='review-input'
 							/>
@@ -209,6 +232,38 @@ const SingleProduct = () => {
 								</button>
 							</div>
 						</form>
+						<h2>Recent Reviews</h2>
+						<div className='recent-reviews'>
+							<h3>Anu Kumar</h3>
+							<p>
+								Lorem ipsum dolor sit, amet consectetur
+								adipisicing elit. Itaque, animi hic assumenda id
+								totam quia vitae sit laudantium molestiae neque?
+							</p>
+						</div>
+						<div className='recent-reviews'>
+							<h3>Anu Kumar</h3>
+							<p>
+								Lorem ipsum dolor sit, amet consectetur
+								adipisicing elit. Itaque, animi hic assumenda id
+								totam quia vitae sit laudantium molestiae neque?
+							</p>
+						</div>
+					</div>
+					<div className='popular-products'>
+						<h1>Popular Products</h1>
+						<div className='p-products'>
+							{popularProducts
+								?.slice(0, 4)
+								?.map((product, index) => {
+									return (
+										<FeaturedProduct
+											key={index}
+											product={product}
+										/>
+									);
+								})}
+						</div>
 					</div>
 				</div>
 			</div>

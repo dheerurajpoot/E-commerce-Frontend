@@ -12,14 +12,13 @@ const FlashDeals = () => {
 			setTimeLeft(calculateTimeLeft());
 		}, 1000);
 
-		// Clear the interval when the component unmounts
 		return () => clearInterval(timer);
 	}, []);
 
 	function calculateTimeLeft() {
 		const now = new Date();
 		const target = new Date(now);
-		target.setHours(24, 0, 0, 0); // Set target time to 24 hours from now
+		target.setHours(24, 0, 0, 0);
 		const difference = target.getTime() - now.getTime();
 
 		let hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
@@ -38,7 +37,7 @@ const FlashDeals = () => {
 		dispatch(getProducts());
 	}, [dispatch]);
 
-	const totalProduct = useSelector((state) => state.product.products);
+	const totalProduct = useSelector((state) => state.product?.products);
 	const totalProducts = [...totalProduct].reverse();
 	return (
 		<>
