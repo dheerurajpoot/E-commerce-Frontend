@@ -12,6 +12,7 @@ import ReactStars from "react-rating-stars-component";
 import { addToCart, getCart } from "../features/auth/userSlice";
 import { useNavigate } from "react-router-dom";
 import FeaturedProduct from "../components/FeaturedProduct";
+import MetaTitle from "../components/MetaTitle";
 
 const SingleProduct = () => {
 	const [color, setColor] = useState(null);
@@ -88,6 +89,7 @@ const SingleProduct = () => {
 	};
 	return (
 		<>
+			<MetaTitle title={product?.title} />
 			<div className='single-product-container'>
 				<div className='container'>
 					<div className='single-product-details'>

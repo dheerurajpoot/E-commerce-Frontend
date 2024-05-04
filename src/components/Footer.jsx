@@ -65,7 +65,9 @@ const Footer = () => {
 						<div className='f-middle-right'>
 							<h2>Important Links</h2>
 							<div className='footer-menu'>
-								<NavLink className='fml-menu'>Account</NavLink>
+								<NavLink to={"/profile"} className='fml-menu'>
+									Account
+								</NavLink>
 								<NavLink to={"/wishlist"} className='fml-menu'>
 									Wishlist
 								</NavLink>
@@ -89,14 +91,14 @@ const Footer = () => {
 							Register now to get updates on promotions and
 							coupns. Don’t worry! We not spam
 						</p>
-						<div className='form-control'>
+						<form className='form-control'>
 							<input
 								type='text'
 								className='input'
 								placeholder='Enter e-mail adress'
 							/>
 							<button className='btn'>Subscribe</button>
-						</div>
+						</form>
 					</div>
 				</div>
 				<div className='footer-bottom container'>

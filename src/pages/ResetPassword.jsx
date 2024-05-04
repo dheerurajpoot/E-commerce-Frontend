@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { useLocation, useNavigate } from "react-router-dom";
 import { resetPassword } from "../features/auth/userSlice";
 import { useDispatch } from "react-redux";
+import MetaTitle from "../components/MetaTitle";
 
 const passwordSchema = yup.object({
 	password: yup.string().required("password is Required"),
@@ -27,6 +28,7 @@ const ResetPassword = () => {
 	});
 	return (
 		<>
+			<MetaTitle title={"Reset Your Password"} />
 			<div className='reset-password-container'>
 				<div className='container'>
 					<div className='signin-form-container password-form-container'>

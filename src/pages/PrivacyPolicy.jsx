@@ -1,8 +1,10 @@
 import React from "react";
+import MetaTitle from "../components/MetaTitle";
 
 const PrivacyPolicy = () => {
 	return (
 		<>
+			<MetaTitle title={"Our Privacy and Policies"} />
 			<div className='policy-container'>
 				<div className='container'>
 					<h2 className='policy-heading'>Privacy Policy</h2>

@@ -1,8 +1,10 @@
 import React from "react";
+import MetaTitle from "../components/MetaTitle";
 
 const TermsCondition = () => {
 	return (
 		<>
+			<MetaTitle title={"Terms and Conditions"} />
 			<div className='terms-container'>
 				<div className='container'>
 					<h2 className='terms-heading'>Terms and Conditions</h2>

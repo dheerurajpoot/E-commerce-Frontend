@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { createEnquiry } from "../features/enquiry/enquirySlice";
+import MetaTitle from "../components/MetaTitle";
 
 const enquirySchema = yup.object({
 	name: yup.string().required("Name is Required"),
@@ -38,6 +39,7 @@ const Contact = () => {
 	}, []);
 	return (
 		<>
+			<MetaTitle title={"Contact: Our Support Team"} />
 			<div className='contact-container'>
 				<div className='container'>
 					<div className='contact-content'>

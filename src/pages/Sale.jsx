@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import FeaturedProduct from "../components/FeaturedProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../features/products/productSlice";
+import MetaTitle from "../components/MetaTitle";
 
 const Sale = () => {
 	const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Sale = () => {
 	);
 	return (
 		<>
+			<MetaTitle title={"Live Sale is Here"} />
 			<div className='sale-container'>
 				<div className='container shop-section'>
 					<div className='sale-banner'>

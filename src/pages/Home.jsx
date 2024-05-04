@@ -2,10 +2,12 @@ import React from "react";
 import Carousel from "../components/Carousel";
 import FlashDeals from "../components/FlashDeals";
 import RecProductSection from "../components/RecProductSection";
+import MetaTitle from "../components/MetaTitle";
 
 const Home = () => {
 	return (
 		<>
+			<MetaTitle title={"DR Store: Best Online Shopping Platorm!"} />
 			<div className='home-container'>
 				<Carousel />
 				<FlashDeals />

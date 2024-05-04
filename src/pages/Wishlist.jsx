@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getWishlistItems } from "../features/auth/userSlice";
 import { addToWishlist } from "../features/products/productSlice";
 import { toast } from "react-toastify";
+import MetaTitle from "../components/MetaTitle";
 
 const Wishlist = () => {
 	const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const Wishlist = () => {
 	};
 	return (
 		<>
+			<MetaTitle title={"Your Wishlist"} />
 			<div className='wishlist-container'>
 				<h2>Wishlist</h2>
 				<div className='container wishlist-section'>

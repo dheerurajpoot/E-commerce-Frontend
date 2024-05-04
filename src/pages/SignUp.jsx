@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../features/auth/userSlice";
 import { useNavigate } from "react-router-dom";
+import MetaTitle from "../components/MetaTitle";
 
 const signUpSchema = yup.object({
 	name: yup.string().required("Name is Required"),
@@ -36,6 +37,7 @@ const SignUp = () => {
 	});
 	return (
 		<>
+			<MetaTitle title={"Create your Account"} />
 			<div className='signup-container'>
 				<div className='container'>
 					<section className='signin-section'>

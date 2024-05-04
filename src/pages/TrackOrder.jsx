@@ -1,9 +1,11 @@
 import React from "react";
 import { RxCross2 } from "react-icons/rx";
+import MetaTitle from "../components/MetaTitle";
 
 const TrackOrder = () => {
 	return (
 		<>
+			<MetaTitle title={"Track Your Order"} />
 			<div className='track-container'>
 				<div className='container'>
 					<section className='order-summary__container'>

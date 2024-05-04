@@ -8,6 +8,7 @@ import axios from "axios";
 import { base_url } from "../utils/base_url";
 import { config } from "../utils/axiosConfig";
 import { createOrder } from "../features/auth/userSlice";
+import MetaTitle from "../components/MetaTitle";
 
 const checkoutSchema = yup.object({
 	name: yup.string().required("Name is Required"),
@@ -157,6 +158,7 @@ const Checkout = () => {
 
 	return (
 		<>
+			<MetaTitle title={"Order Cart Products"} />
 			<div className='checkout-container'>
 				<div className='container'>
 					<div className='checkout-main'>

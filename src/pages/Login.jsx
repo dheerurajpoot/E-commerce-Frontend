@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/auth/userSlice";
 import { useNavigate } from "react-router-dom";
+import MetaTitle from "../components/MetaTitle";
 
 const loginSchema = yup.object({
 	email: yup
@@ -39,6 +40,7 @@ const Login = () => {
 
 	return (
 		<>
+			<MetaTitle title={"Login to your account"} />
 			<div className='login-container'>
 				<div className='container'>
 					<section className='signin-section'>

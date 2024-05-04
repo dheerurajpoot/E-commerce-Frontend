@@ -8,6 +8,7 @@ import {
 	updateCartQty,
 } from "../features/auth/userSlice";
 import { RxCross2 } from "react-icons/rx";
+import MetaTitle from "../components/MetaTitle";
 
 const Cart = () => {
 	const dispatch = useDispatch();
@@ -71,6 +72,7 @@ const Cart = () => {
 
 	return (
 		<>
+			<MetaTitle title={"Your Cart Products"} />
 			<div className='cart-container'>
 				<div className='cart container'>
 					<div className='shopping-cart'>

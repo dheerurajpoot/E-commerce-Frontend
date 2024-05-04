@@ -1,8 +1,10 @@
 import React from "react";
+import MetaTitle from "../components/MetaTitle";
 
 const About = () => {
 	return (
 		<>
+			<MetaTitle title={"About: Our Company"} />
 			<div className='about-container'>
 				<div className='container'>
 					<div className='about-content'>

@@ -1,14 +1,16 @@
 import React from "react";
+import MetaTitle from "../components/MetaTitle";
 
 const Faq = () => {
 	return (
 		<>
+			<MetaTitle title={"Frequently Asked Questions"} />
 			<div className='faq-container'>
 				<div className='container'>
 					<h2 className='faq-title'>Frequently Asked Questions</h2>
 					<div className='faq'>
 						<input id='faq-a' type='checkbox' />
-						<label for='faq-a'>
+						<label htmlFor='faq-a'>
 							<p className='faq-heading'>
 								What payment methods do you accept?
 							</p>
@@ -22,7 +24,7 @@ const Faq = () => {
 							</p>
 						</label>
 						<input id='faq-b' type='checkbox' />
-						<label for='faq-b'>
+						<label htmlFor='faq-b'>
 							<p className='faq-heading'>
 								What is your return policy?
 							</p>
@@ -37,7 +39,7 @@ const Faq = () => {
 							</p>
 						</label>
 						<input id='faq-c' type='checkbox' />
-						<label for='faq-c'>
+						<label htmlFor='faq-c'>
 							<p className='faq-heading'>
 								How long will it take for my order to arrive?
 							</p>
@@ -52,7 +54,7 @@ const Faq = () => {
 							</p>
 						</label>
 						<input id='faq-d' type='checkbox' />
-						<label for='faq-d'>
+						<label htmlFor='faq-d'>
 							<p className='faq-heading'>
 								Are my personal and payment details secure on
 								your website?
@@ -68,7 +70,7 @@ const Faq = () => {
 							</p>
 						</label>
 						<input id='faq-e' type='checkbox' />
-						<label for='faq-e'>
+						<label htmlFor='faq-e'>
 							<p className='faq-heading'>
 								Do you offer discounts for bulk or wholesale
 								orders?

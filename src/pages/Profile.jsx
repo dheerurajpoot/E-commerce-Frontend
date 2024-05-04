@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { updateProfile } from "../features/auth/userSlice";
 import ForgetPassword from "./ForgetPassword";
+import MetaTitle from "../components/MetaTitle";
 
 const profileUpdateSchema = yup.object({
 	email: yup
@@ -35,6 +36,7 @@ const Profile = () => {
 
 	return (
 		<>
+			<MetaTitle title={`Your Profile: ${loggedUser?.name}`} />
 			<div className='profile-container'>
 				<div className='container'>
 					<h1 className='profile-title'>My Profile</h1>

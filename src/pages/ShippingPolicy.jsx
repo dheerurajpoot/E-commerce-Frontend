@@ -1,8 +1,10 @@
 import React from "react";
+import MetaTitle from "../components/MetaTitle";
 
 const ShippingPolicy = () => {
 	return (
 		<>
+			<MetaTitle title={"Our Shipping Policies"} />
 			<div className='shipping-container'>
 				<div className='container'>
 					<h2 className='shipping-heading'>Shipping Policy</h2>
