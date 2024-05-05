@@ -58,7 +58,7 @@ const Header = () => {
 							</div>
 							<span className='menu-line'></span>
 							<div>
-								<p>Hotline: +91 1234567890</p>
+								<p>Hotline: +91-9026315148</p>
 							</div>
 						</div>
 						<div className='header-top-sections '>
@@ -247,9 +247,6 @@ const Header = () => {
 											</Link>
 										);
 									})}
-
-									<Link to={"/"}>Grocery</Link>
-									<Link to={"/"}>Vegitables</Link>
 								</div>
 							</div>
 						</div>
@@ -275,8 +272,11 @@ const Header = () => {
 							</NavLink>
 						</div>
 						<div className='h-bottom-right'>
-							<Link to={"/track-order"} className='track-order'>
-								<span>Track My Order</span>
+							<Link
+								target='_blank'
+								to={"https://wa.me/message/LE5CEREQIBKQJ1"}
+								className='track-order'>
+								<span>Chat Support</span>
 							</Link>
 						</div>
 					</div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -23,8 +23,10 @@ const Checkout = () => {
 	const [cartSubTotal, setCartSubTotal] = useState(null);
 	const [cartTotalQuantity, setCartTotalQuantity] = useState(null);
 	const [cartProductState, setCartProductState] = useState([]);
+	const [paymentMethod, setPaymentMethod] = useState("");
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
 			name: "",
@@ -41,10 +43,10 @@ const Checkout = () => {
 			setTimeout(() => {
 				checkoutHandler();
 			}, 300);
-			// formik.resetForm();
 		},
 	});
 	const cartProducts = useSelector((state) => state?.auth?.getCart);
+	let shippingCharge = 50;
 
 	useEffect(() => {
 		let cartQuantity = 0;
@@ -54,11 +56,10 @@ const Checkout = () => {
 				cartSum +
 				Number(cartProducts[i]?.quantity * cartProducts[i]?.price);
 			cartQuantity = cartQuantity + cartProducts[i]?.quantity;
-			setCartSubTotal(cartSum);
+			setCartSubTotal(cartSum + shippingCharge);
 			setCartTotalQuantity(cartQuantity);
 		}
 	}, [cartProducts]);
-	let shippingCharge = 50;
 
 	const loadScript = (src) => {
 		return new Promise((resolve) => {
@@ -85,75 +86,106 @@ const Checkout = () => {
 		}
 		setCartProductState(items);
 	}, [cartProducts]);
+
 	const checkoutHandler = async () => {
-		const res = await loadScript(
-			"https://checkout.razorpay.com/v1/checkout.js"
-		);
-
-		if (!res) {
-			alert("Razorpay SDK is failed to Load");
+		if (!paymentMethod) {
+			alert("Please select a payment method");
 			return;
 		}
-		const response = await axios.post(
-			`${base_url}user/order/checkout`,
-			{ amount: cartSubTotal + shippingCharge },
-			config
-		);
-		if (!response) {
-			alert("Something Went Wrong!");
-			return;
+		if (paymentMethod === "razorpay") {
+			// Handle Razorpay payment
+
+			const res = await loadScript(
+				"https://checkout.razorpay.com/v1/checkout.js"
+			);
+
+			if (!res) {
+				alert("Razorpay SDK is failed to Load");
+				return;
+			}
+			const response = await axios.post(
+				`${base_url}user/order/checkout`,
+				{ amount: cartSubTotal },
+				config
+			);
+			if (!response) {
+				alert("Something Went Wrong!");
+				return;
+			}
+			const { amount, id: order_id, currency } = response.data.order;
+			const options = {
+				key: "rzp_test_SdOG1CYzMFFNZi",
+				amount: amount,
+				currency: currency,
+				name: "DR Store.",
+				description: "Test Transaction",
+				// image: { logo },
+				order_id: order_id,
+
+				handler: async function (response) {
+					const data = {
+						orderCreationId: order_id,
+						razorpayPaymentId: response.razorpay_payment_id,
+						razorpayOrderId: response.razorpay_order_id,
+					};
+
+					const result = await axios.post(
+						`${base_url}user/order/payment-verification`,
+						data,
+						config
+					);
+
+					dispatch(
+						createOrder({
+							totalPrice: cartSubTotal,
+							priceAfterDiscount: cartSubTotal,
+							orderItems: cartProductState,
+							paymentInfo: {
+								razorpayPaymentId: response.razorpay_payment_id,
+								razorpayOrderId: response.razorpay_order_id,
+							},
+							shippingInfo: formik.values,
+						})
+					);
+					setTimeout(() => {
+						navigate("/my-orders");
+					}, 800);
+				},
+				prefill: {
+					name: "DR Store",
+					email: "support@evtn.org",
+					contact: "+919026315148",
+				},
+				notes: {
+					address: "Kalyanpur kanpur",
+				},
+				theme: {
+					color: "#61dafb",
+				},
+			};
+
+			const paymentObject = new window.Razorpay(options);
+			paymentObject.open();
+		} else if (paymentMethod === "cod") {
+			// Handle Cash On Delivery
+			// Proceed with order creation without payment
+
+			dispatch(
+				createOrder({
+					totalPrice: cartSubTotal,
+					priceAfterDiscount: cartSubTotal,
+					orderItems: cartProductState,
+					paymentInfo: {
+						razorpayPaymentId: "Cash On Delivery",
+						razorpayOrderId: "Cash On Delivery",
+					},
+					shippingInfo: formik.values,
+				})
+			);
+			setTimeout(() => {
+				navigate("/my-orders");
+			}, 800);
 		}
-		const { amount, id: order_id, currency } = response.data.order;
-		const options = {
-			key: "rzp_test_SdOG1CYzMFFNZi",
-			amount: amount,
-			currency: currency,
-			name: "DR Store.",
-			description: "Test Transaction",
-			// image: { logo },
-			order_id: order_id,
-
-			handler: async function (response) {
-				const data = {
-					orderCreationId: order_id,
-					razorpayPaymentId: response.razorpay_payment_id,
-					razorpayOrderId: response.razorpay_order_id,
-				};
-
-				const result = await axios.post(
-					`${base_url}user/order/payment-verification`,
-					data,
-					config
-				);
-
-				dispatch(
-					createOrder({
-						totalPrice: cartSubTotal,
-						priceAfterDiscount: cartSubTotal,
-						orderItems: cartProductState,
-						paymentInfo: {
-							razorpayPaymentId: response.razorpay_payment_id,
-							razorpayOrderId: response.razorpay_order_id,
-						},
-						shippingInfo: formik.values,
-					})
-				);
-			},
-			prefill: {
-				name: "DR Store",
-				email: "support@evtn.org",
-				contact: "+919026315148",
-			},
-			notes: {
-				address: "Kalyanpur kanpur",
-			},
-			theme: {
-				color: "#61dafb",
-			},
-		};
-
-		const paymentObject = new window.Razorpay(options);
-		paymentObject.open();
 	};
 
 	return (
@@ -375,8 +407,14 @@ const Checkout = () => {
 										<div>
 											<input
 												type='radio'
-												name='dbt'
-												value='dbt'
+												name='paymentMethod'
+												value='cod'
+												onChange={() =>
+													setPaymentMethod("cod")
+												}
+												checked={
+													paymentMethod === "cod"
+												}
 											/>{" "}
 											Cash On Delivery
 										</div>
@@ -391,8 +429,14 @@ const Checkout = () => {
 										<div>
 											<input
 												type='radio'
-												name='dbt'
-												value='cd'
+												name='paymentMethod'
+												value='razorpay'
+												onChange={() =>
+													setPaymentMethod("razorpay")
+												}
+												checked={
+													paymentMethod === "razorpay"
+												}
 											/>{" "}
 											Razorpay{" "}
 											<span>

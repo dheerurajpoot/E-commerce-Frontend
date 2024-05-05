@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserOrders } from "../features/auth/userSlice";
 import { RxCross2 } from "react-icons/rx";
 import MetaTitle from "../components/MetaTitle";
 
 const TrackOrder = () => {
+	const dispatch = useDispatch();
+	const location = useLocation();
+	const id = location.pathname.split("/")[2];
+	useEffect(() => {
+		dispatch(getUserOrders());
+	}, []);
+	const userOrders = useSelector(
+		(state) => state.auth?.userOrders?.userOrder
+	);
+	const [order, setOrder] = useState(null);
+
+	useEffect(() => {
+		if (userOrders && id) {
+			const foundOrder = userOrders.find((order) => order?._id === id);
+			setOrder(foundOrder);
+		}
+	}, [userOrders, id]);
+
+	// delivery date
+
+	const deliveryDate = new Date(order?.createdAt);
+	deliveryDate.setDate(deliveryDate.getDate() + 5);
+
+	const formattedDeliveryDate = deliveryDate.toDateString();
+
 	return (
 		<>
 			<MetaTitle title={"Track Your Order"} />
@@ -11,7 +39,7 @@ const TrackOrder = () => {
 					<section className='order-summary__container'>
 						<div className='order-summary__content'>
 							<h2 className='order-summary__title'>
-								Payment Successful
+								Order Successfull!
 							</h2>
 							<p className='order-summary__message'>
 								Thanks for making a purchase. You can check our
@@ -22,45 +50,61 @@ const TrackOrder = () => {
 									<p className='order-summary__detail'>
 										Order Id:{" "}
 										<span className='order-summary__id'>
-											#10234987
+											{order?._id}
 										</span>
 									</p>
 									<p className='order-summary__detail'>
-										Order Payment:{" "}
+										Order Date:{" "}
 										<span className='order-summary__payment-date'>
-											18th march 2021
+											{new Date(
+												order?.createdAt
+											).toLocaleString()}
 										</span>
 									</p>
 								</div>
 								<button className='order-summary__button'>
-									Track Your Order
+									<Link
+										className='back-to-orders'
+										to={"/my-orders"}>
+										Back to Orders
+									</Link>
 								</button>
 							</div>
 							<div className='order-summary__items'>
 								<div className='order-summary__item'>
-									<div className='order-summary-info-box'>
-										<div className='order-summary__image-box'>
-											<img
-												src='./images/capsicum.png'
-												alt='Premium Watch image'
-												className='order-summary__image'
-											/>
-										</div>
-										<div className='order-summary'>
-											<h2 className='order-summary__product-name'>
-												Red Capsicum
-											</h2>
-											<p className='order-summary__manufacturer'>
-												Vegitables
-											</p>
-										</div>
-									</div>
+									{order?.orderItems?.map((item, index) => {
+										return (
+											<div
+												key={index}
+												className='order-summary-info-box'>
+												<div className='order-summary__image-box'>
+													<img
+														src={`${item?.product?.images[0].url}`}
+														alt='Order Image'
+														className='order-summary__image'
+													/>
+												</div>
+												<div className='order-summary'>
+													<h2 className='order-summary__product-name'>
+														{item?.product?.title}
+													</h2>
+													<p className='order-summary__manufacturer'>
+														Quantity:{" "}
+														{item?.quantity} ,
+														{"    "} &nbsp; Color:{" "}
+														{item?.color}
+													</p>
+												</div>
+											</div>
+										);
+									})}
+
 									<div className='order-summary__pricing'>
 										<p className='order-summary__price-label'>
 											Price
 										</p>
 										<p className='order-summary__price'>
-											$100
+											{`₹${order?.totalPrice}`}
 										</p>
 									</div>
 									<div className='order-summary__status'>
@@ -68,7 +112,7 @@ const TrackOrder = () => {
 											Status
 										</p>
 										<p className='order-summary__status-text order-summary__status-ready'>
-											Ready for Delivery
+											{order?.orderStatus}
 										</p>
 									</div>
 									<div className='order-summary__delivery'>
@@ -76,28 +120,38 @@ const TrackOrder = () => {
 											Expected Delivery Time
 										</p>
 										<p className='order-summary__delivery-date'>
-											23rd March 2021
+											{formattedDeliveryDate}
 										</p>
 									</div>
 								</div>
 							</div>
 							<div className='order-summary__payments'>
 								<div className='order-summary__action'>
-									<button className='order-summary__cancel'>
-										<RxCross2 size={25} />
-										Cancel Order
-									</button>
+									{(order?.orderStatus &&
+										order?.orderStatus === "ordered") ||
+									order?.orderStatus === "processing" ? (
+										<button className='order-summary__cancel'>
+											<RxCross2 size={25} />
+											Cancel Order
+										</button>
+									) : (
+										""
+									)}
+
 									<p className='order-summary__payment'>
-										Paid using Credit Card{" "}
+										Payment :{" "}
 										<span className='order-summary__card'>
-											ending with 8822
+											{
+												order?.paymentInfo
+													?.razorpayPaymentId
+											}
 										</span>
 									</p>
 								</div>
 								<p className='order-summary__total'>
 									Total Price:{" "}
 									<span className='order-summary__total-price'>
-										$200.00
+										{`₹${order?.totalPrice}`}
 									</span>
 								</p>
 							</div>

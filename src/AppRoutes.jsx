@@ -54,7 +54,7 @@ const AppRoutes = () => {
 							}
 						/>
 						<Route
-							path='/track-order'
+							path='/track-order/:id'
 							element={
 								<ProtectedRoutes>
 									<TrackOrder />
@@ -107,7 +107,11 @@ const AppRoutes = () => {
 						/>
 						<Route
 							path='/forget-password'
-							element={<ForgetPassword />}
+							element={
+								<ProtectedRoutes>
+									<ForgetPassword />
+								</ProtectedRoutes>
+							}
 						/>
 						<Route
 							path='/sign-up'

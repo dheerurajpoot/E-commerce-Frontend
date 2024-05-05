@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserOrders } from "../features/auth/userSlice";
+import { IoEyeSharp } from "react-icons/io5";
 
 const Orders = () => {
 	const dispatch = useDispatch();
+
 	useEffect(() => {
 		dispatch(getUserOrders());
 	}, []);
@@ -26,7 +29,8 @@ const Orders = () => {
 										<th>Color</th>
 										<th>Order Date</th>
 										<th>Status</th>
-										<th>Net Amount</th>
+										<th>Amount</th>
+										<th>View</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -75,10 +79,18 @@ const Orders = () => {
 													<td>
 														{new Date(
 															item?.createdAt
-														).toLocaleString()}
+														).toDateString()}
 													</td>
 													<td>{item?.orderStatus}</td>
-													<td>{`₹${item?.priceAfterDiscount}`}</td>
+													<td>{`₹${item?.totalPrice}`}</td>
+													<td className='view-order-btn'>
+														<Link
+															to={`/track-order/${item?._id}`}>
+															<IoEyeSharp
+																size={22}
+															/>
+														</Link>
+													</td>
 												</tr>
 											);
 										})}

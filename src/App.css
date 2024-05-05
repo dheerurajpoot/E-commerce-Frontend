@@ -2394,8 +2394,14 @@ background-color: var(--primery-color);
   vertical-align: middle;
   line-height: 10px;
   }
-  
-
+  .view-order-btn{
+    cursor: pointer;
+    
+  }
+  .back-to-orders{
+    text-decoration: none;
+    color: #fff;
+  }
 @media only screen and (max-width: 600px) and (min-width: 350px){
   .header-middle{
     display: none;
