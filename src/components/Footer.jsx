@@ -97,7 +97,9 @@ const Footer = () => {
 								className='input'
 								placeholder='Enter e-mail adress'
 							/>
-							<button className='btn'>Subscribe</button>
+							<button type='submit' className='btn'>
+								Subscribe
+							</button>
 						</form>
 					</div>
 				</div>

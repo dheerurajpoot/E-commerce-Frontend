@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const FeaturedProduct = ({ product }) => {
+	const navigate = useNavigate();
 	const { _id, title, tags, price, images } = product;
+
+	const handleRedirect = () => {
+		navigate(`/product/${_id}`);
+		window.location.reload();
+	};
 
 	return (
 		<>
@@ -11,7 +18,7 @@ const FeaturedProduct = ({ product }) => {
 				<div className='f-product-container'>
 					<div className='featured-product-container'>
 						{images.map((image, index) => (
-							<Link key={index} to={`/product/${_id}`}>
+							<Link key={index} onClick={handleRedirect}>
 								<img
 									className='featured-product-image'
 									src={`${image.url}`}
@@ -30,13 +37,15 @@ const FeaturedProduct = ({ product }) => {
 								price + (price * 20) / 100
 							}`}</del>
 						</div>
-						<Link to={`/product/${_id}`} className='featured-title'>
+						<Link
+							onClick={handleRedirect}
+							className='featured-title'>
 							<h3 className='featured-product-name'>
 								{`${title.substr(0, 24)}....`}
 							</h3>
 						</Link>
 					</div>
-					<Link to={`/product/${_id}`} className='f-product-link'>
+					<Link onClick={handleRedirect} className='f-product-link'>
 						<button className='featured-product-button'>
 							<div className='default-state'>View Details</div>
 							<div className='plus-state'>
