@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { HiOutlineShoppingCart } from "react-icons/hi";
@@ -11,6 +11,7 @@ import { getCategory } from "../features/category/categorySlice";
 import { getCart, getWishlistItems } from "../features/auth/userSlice";
 
 const Header = () => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(getCategory());
@@ -36,7 +37,9 @@ const Header = () => {
 		product.title.toLowerCase().includes(searchQuery.toLowerCase())
 	);
 
-	const resetSearch = () => {
+	const resetSearch = (id) => {
+		navigate(`/product/${id}`);
+		window.location.reload();
 		setSearchQuery("");
 	};
 	// logout user
@@ -147,25 +150,31 @@ const Header = () => {
 										<div className='search-products'>
 											{searchQuery && (
 												<div>
-													{filteredProducts.map(
-														(product, index) => (
-															<div
-																className='search-product-details'
-																key={index}>
-																<Link
-																	className='search-product-title'
-																	to={`/product/${product?._id}`}
-																	onClick={
-																		resetSearch
-																	}>
-																	{
-																		product?.title
-																	}
-																</Link>
-																{/* Display other details of the product */}
-															</div>
-														)
-													)}
+													{filteredProducts
+														.slice(0, 10)
+														.map(
+															(
+																product,
+																index
+															) => (
+																<div
+																	className='search-product-details'
+																	key={index}>
+																	<Link
+																		className='search-product-title'
+																		onClick={() =>
+																			resetSearch(
+																				product?._id
+																			)
+																		}>
+																		{
+																			product?.title
+																		}
+																	</Link>
+																	{/* Display other details of the product */}
+																</div>
+															)
+														)}
 												</div>
 											)}
 										</div>
