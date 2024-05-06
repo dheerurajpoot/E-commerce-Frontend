@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserOrders } from "../features/auth/userSlice";
 import { RxCross2 } from "react-icons/rx";
 import MetaTitle from "../components/MetaTitle";
+import { FaCheck } from "react-icons/fa";
 
 const TrackOrder = () => {
 	const dispatch = useDispatch();
@@ -31,6 +32,28 @@ const TrackOrder = () => {
 
 	const formattedDeliveryDate = deliveryDate.toDateString();
 
+	// order Tracking
+
+	const [progress, setProgress] = useState(0);
+
+	useEffect(() => {
+		const statusToProgress = {
+			Ordered: 1,
+			Processing: 3,
+			Dispatched: 5,
+			Delivered: 7,
+		};
+
+		if (
+			order?.orderStatus &&
+			statusToProgress.hasOwnProperty(order.orderStatus)
+		) {
+			setProgress(statusToProgress[order.orderStatus]);
+		} else {
+			setProgress(1);
+		}
+	}, [order?.orderStatus]);
+
 	return (
 		<>
 			<MetaTitle title={"Track Your Order"} />
@@ -45,6 +68,50 @@ const TrackOrder = () => {
 								Thanks for making a purchase. You can check our
 								order summary from below.
 							</p>
+							<div className='tracking-wrapper'>
+								<div className='tracking'>
+									<div
+										id='progress'
+										className={`progress-${progress}`}>
+										<div className='empty-bar'></div>
+										<div className='color-bar'></div>
+										<ul>
+											<li className='bullet-1'>
+												<div className='el'>
+													<FaCheck className='tracking-check bx bx-check' />
+												</div>
+												<div className='txt'>
+													Ordered
+												</div>
+											</li>
+											<li className='bullet-2'>
+												<div className='el'>
+													<FaCheck className='tracking-check bx bx-check' />
+												</div>
+												<div className='txt'>
+													Processing
+												</div>
+											</li>
+											<li className='bullet-3'>
+												<div className='el'>
+													<FaCheck className='tracking-check bx bx-check' />
+												</div>
+												<div className='txt'>
+													Dispatched
+												</div>
+											</li>
+											<li className='bullet-4'>
+												<div className='el'>
+													<FaCheck className='tracking-check bx bx-check' />
+												</div>
+												<div className='txt'>
+													Delivered
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
 							<div className='order-summary__box'>
 								<div className='order-summary__details'>
 									<p className='order-summary__detail'>
