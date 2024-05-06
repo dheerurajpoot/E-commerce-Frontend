@@ -9,6 +9,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../features/category/categorySlice";
 import { getCart, getWishlistItems } from "../features/auth/userSlice";
+import { BiSupport } from "react-icons/bi";
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -171,7 +172,6 @@ const Header = () => {
 																			product?.title
 																		}
 																	</Link>
-																	{/* Display other details of the product */}
 																</div>
 															)
 														)}
@@ -275,7 +275,8 @@ const Header = () => {
 							<Link
 								target='_blank'
 								to={"https://wa.me/message/LE5CEREQIBKQJ1"}
-								className='track-order'>
+								className='chat-support'>
+								<BiSupport size={22} />
 								<span>Chat Support</span>
 							</Link>
 						</div>
