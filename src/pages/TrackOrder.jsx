@@ -62,56 +62,65 @@ const TrackOrder = () => {
 					<section className='order-summary__container'>
 						<div className='order-summary__content'>
 							<h2 className='order-summary__title'>
-								Order Successfull!
+								{order?.orderStatus &&
+								order?.orderStatus == "Cancelled"
+									? "Order Cancelled!"
+									: "Order Successfull!"}
 							</h2>
 							<p className='order-summary__message'>
 								Thanks for making a purchase. You can check our
-								order summary from below.
+								order summary below.
 							</p>
-							<div className='tracking-wrapper'>
-								<div className='tracking'>
-									<div
-										id='progress'
-										className={`progress-${progress}`}>
-										<div className='empty-bar'></div>
-										<div className='color-bar'></div>
-										<ul>
-											<li className='bullet-1'>
-												<div className='el'>
-													<FaCheck className='tracking-check bx bx-check' />
-												</div>
-												<div className='txt'>
-													Ordered
-												</div>
-											</li>
-											<li className='bullet-2'>
-												<div className='el'>
-													<FaCheck className='tracking-check bx bx-check' />
-												</div>
-												<div className='txt'>
-													Processing
-												</div>
-											</li>
-											<li className='bullet-3'>
-												<div className='el'>
-													<FaCheck className='tracking-check bx bx-check' />
-												</div>
-												<div className='txt'>
-													Dispatched
-												</div>
-											</li>
-											<li className='bullet-4'>
-												<div className='el'>
-													<FaCheck className='tracking-check bx bx-check' />
-												</div>
-												<div className='txt'>
-													Delivered
-												</div>
-											</li>
-										</ul>
+							{order?.orderStatus &&
+							order?.orderStatus == "Cancelled" ? (
+								""
+							) : (
+								<div className='tracking-wrapper'>
+									<div className='tracking'>
+										<div
+											id='progress'
+											className={`progress-${progress}`}>
+											<div className='empty-bar'></div>
+											<div className='color-bar'></div>
+											<ul>
+												<li className='bullet-1'>
+													<div className='el'>
+														<FaCheck className='tracking-check bx bx-check' />
+													</div>
+													<div className='txt'>
+														Ordered
+													</div>
+												</li>
+												<li className='bullet-2'>
+													<div className='el'>
+														<FaCheck className='tracking-check bx bx-check' />
+													</div>
+													<div className='txt'>
+														Processing
+													</div>
+												</li>
+												<li className='bullet-3'>
+													<div className='el'>
+														<FaCheck className='tracking-check bx bx-check' />
+													</div>
+													<div className='txt'>
+														Dispatched
+													</div>
+												</li>
+												<li className='bullet-4'>
+													<div className='el'>
+														<FaCheck className='tracking-check bx bx-check' />
+													</div>
+													<div className='txt'>
+														Delivered
+													</div>
+												</li>
+											</ul>
+										</div>
 									</div>
 								</div>
-							</div>
+							)}
+
 							<div className='order-summary__box'>
 								<div className='order-summary__details'>
 									<p className='order-summary__detail'>
