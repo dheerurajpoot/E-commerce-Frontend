@@ -55,6 +55,18 @@ const getCart = async () => {
 		throw error;
 	}
 };
+const emptyCart = async () => {
+	try {
+		const response = await axios.delete(
+			`${base_url}user/empty-cart`,
+			config
+		);
+		return response.data;
+	} catch (error) {
+		console.error("Error in deleting cart :", error);
+		throw error;
+	}
+};
 const removeCartItem = async (id) => {
 	try {
 		const response = await axios.delete(
@@ -149,6 +161,7 @@ const userService = {
 	getWishlistItems,
 	addToCart,
 	getCart,
+	emptyCart,
 	removeCartItem,
 	updateCartQty,
 	createOrder,

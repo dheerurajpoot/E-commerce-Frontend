@@ -41,7 +41,6 @@ const Cart = () => {
 			dispatch(getCart());
 		}, 200);
 	};
-	let shippingCharge = 50;
 	useEffect(() => {
 		let cartSum = 0;
 		for (let i = 0; i < cartProducts?.length; i++) {

@@ -10,9 +10,13 @@ const Orders = () => {
 	useEffect(() => {
 		dispatch(getUserOrders());
 	}, []);
-	const userOrders = useSelector(
+	const userAllOrders = useSelector(
 		(state) => state.auth?.userOrders?.userOrder
 	);
+	let userOrders;
+	if (userAllOrders) {
+		userOrders = [...userAllOrders]?.reverse();
+	}
 
 	return (
 		<>

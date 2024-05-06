@@ -7,7 +7,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import axios from "axios";
 import { base_url } from "../utils/base_url";
 import { config } from "../utils/axiosConfig";
-import { createOrder } from "../features/auth/userSlice";
+import { createOrder, emptyCart } from "../features/auth/userSlice";
 import MetaTitle from "../components/MetaTitle";
 
 const checkoutSchema = yup.object({
@@ -56,11 +56,11 @@ const Checkout = () => {
 				cartSum +
 				Number(cartProducts[i]?.quantity * cartProducts[i]?.price);
 			cartQuantity = cartQuantity + cartProducts[i]?.quantity;
-			setCartSubTotal(cartSum + shippingCharge);
-			setCartTotalQuantity(cartQuantity);
 		}
+		setCartSubTotal(cartSum);
+		setCartTotalQuantity(cartQuantity);
 	}, [cartProducts]);
-
+	const orderAmount = cartSubTotal + shippingCharge;
 	const loadScript = (src) => {
 		return new Promise((resolve) => {
 			const script = document.createElement("script");
@@ -137,8 +137,8 @@ const Checkout = () => {
 
 					dispatch(
 						createOrder({
-							totalPrice: cartSubTotal,
-							priceAfterDiscount: cartSubTotal,
+							totalPrice: orderAmount,
+							priceAfterDiscount: orderAmount,
 							orderItems: cartProductState,
 							paymentInfo: {
 								razorpayPaymentId: response.razorpay_payment_id,
@@ -147,6 +147,7 @@ const Checkout = () => {
 							shippingInfo: formik.values,
 						})
 					);
+					dispatch(emptyCart());
 					setTimeout(() => {
 						navigate("/my-orders");
 					}, 800);
@@ -168,12 +169,11 @@ const Checkout = () => {
 			paymentObject.open();
 		} else if (paymentMethod === "cod") {
 			// Handle Cash On Delivery
-			// Proceed with order creation without payment
 
 			dispatch(
 				createOrder({
-					totalPrice: cartSubTotal,
-					priceAfterDiscount: cartSubTotal,
+					totalPrice: orderAmount,
+					priceAfterDiscount: orderAmount,
 					orderItems: cartProductState,
 					paymentInfo: {
 						razorpayPaymentId: "Cash On Delivery",
@@ -182,12 +182,12 @@ const Checkout = () => {
 					shippingInfo: formik.values,
 				})
 			);
+			dispatch(emptyCart());
 			setTimeout(() => {
 				navigate("/my-orders");
 			}, 800);
 		}
 	};
-
 	return (
 		<>
 			<MetaTitle title={"Order Cart Products"} />
@@ -382,6 +382,25 @@ const Checkout = () => {
 											</thead>
 											<tbody>
 												<tr>
+													<td>Products :</td>
+													{cartProducts &&
+														cartProducts?.map(
+															(item, index) => {
+																return (
+																	<td
+																		key={
+																			index
+																		}>
+																		{`${item?.productId?.title.substr(
+																			0,
+																			18
+																		)}...`}
+																	</td>
+																);
+															}
+														)}
+												</tr>
+												<tr>
 													<td>Total Products</td>
 													<td>{cartTotalQuantity}</td>
 												</tr>
@@ -394,11 +413,8 @@ const Checkout = () => {
 													<td>{`₹ ${shippingCharge}`}</td>
 												</tr>
 												<tr className='total-ammount'>
-													<td>Total</td>
-													<td>{`₹ ${
-														cartSubTotal +
-														shippingCharge
-													}`}</td>
+													<td>Order Amount</td>
+													<td>{`₹ ${orderAmount}`}</td>
 												</tr>
 											</tbody>
 										</table>
