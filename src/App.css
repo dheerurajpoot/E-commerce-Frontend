@@ -2580,12 +2580,25 @@ background-color: var(--primery-color);
     text-decoration: none;
     color: #fff;
   }
+  .search-mobile-container{
+    display: none;
+  }
 @media only screen and (max-width: 600px) and (min-width: 350px){
+  .header-container{
+    height: 250px;
+  }
+  .header-top{
+    justify-content: center;
+  }
   .header-middle{
     display: none;
   }
   .header-left{
     width: auto;
+  }
+  .header-main{
+    height: 70px;
+    border-bottom: .5px solid var(--secondary-color);
   }
   .h-bottom-middle{
     display: none;
@@ -2598,6 +2611,33 @@ background-color: var(--primery-color);
   }
   .tooltip{
     display: none;
+  }
+  .search-mobile-container{
+    display: block;
+    margin: 15px 0;
+  }
+  .search-main-container{
+    width: 100%;
+  }
+  .mobile-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 5px;
+  }
+  .mobile-search input{
+    width: 80%;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    outline: none;
+  }
+  .search_icon{
+    color: var(--fourth-color);
+  }
+  .header-bottom{
+    height: 60px;
   }
   .slide img{
     height: 250px;
@@ -2619,7 +2659,7 @@ background-color: var(--primery-color);
     left: 0px;
   }
   .flash-title-timer{
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 10px;
   }
   .flash-products{
@@ -2702,11 +2742,67 @@ background-color: var(--primery-color);
     margin: 20px 10px;
     width: 95%;
   }
+  .review-submit-btn{
+    margin-bottom: 20px;
+  }
+  .checkout-main h2{
+    font-size: 20px;
+  }
+  .back-to-cart{
+    margin: 0;
+  }
   .form-section{
     flex-direction: column;
   }
   .checkout-form{
     width: 100%;
+  }
+  .checkout-d-flex label>span{
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .checkout-d-flex input[type="text"], .checkout-d-flex input[type="number"], .checkout-d-flex input[type="tel"], .checkout-d-flex input[type="email"], .checkout-d-flex select{
+    width: 100%;
+  }
+  .checkout-d-flex button{
+    width: 90%;
+  }
+  .order-summary__container{
+    padding: 2rem 0;
+  }
+  .order-summary__title{
+    font-size: 28px;
+  }
+  .order-summary__box{
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+  .order-summary__item{
+    gap: 35px;
+    flex-direction: column;
+  }
+  .order-summary{
+    width: 220px;
+  }
+  .tracking .color-bar{
+    height: 30%;
+  }
+  .tracking ul > li{
+    width: 10%;
+  }
+  .tracking ul > li .el .tracking-check{
+    left: 22%;
+    margin-bottom: 22%;
+  }
+  .order-summary__action{
+    padding: 10px;
+  }
+  .order-summary__payments{
+    flex-direction: column-reverse;
+    margin-top: 20px;
+  }
+  .order-summary__payment{
+    font-size: 16px;
   }
   /* Footer  */
 

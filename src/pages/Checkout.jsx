@@ -283,7 +283,7 @@ const Checkout = () => {
 											</div>
 										</label>
 										<label>
-											<span>&nbsp;</span>
+											<span>Other</span>
 											<input
 												type='text'
 												name='other'
@@ -435,11 +435,7 @@ const Checkout = () => {
 											Cash On Delivery
 										</div>
 										<p>
-											Make your payment directly into our
-											bank account. Please use your Order
-											ID as the payment reference. Your
-											order will not be shipped until the
-											funds have cleared in our account.
+											Pay on Delivery is also available.
 										</p>
 
 										<div>

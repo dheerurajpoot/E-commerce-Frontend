@@ -182,6 +182,7 @@ const Header = () => {
 								</div>
 							</div>
 						</div>
+
 						<div className='header-right'>
 							<div>
 								<Link
@@ -225,6 +226,47 @@ const Header = () => {
 											: "Login Again"}
 									</span>
 								</Link>
+							</div>
+						</div>
+					</div>
+					<div className='search-mobile-container'>
+						<div className='search-main-container'>
+							<div className='mobile-search'>
+								<input
+									type='text'
+									id='search_text'
+									placeholder='Search by Category or products ..'
+									value={searchQuery}
+									onChange={handleSearchChange}
+								/>
+
+								<IoSearchSharp
+									className='search_icon'
+									size={22}
+								/>
+							</div>
+							<div className='search-products'>
+								{searchQuery && (
+									<div>
+										{filteredProducts
+											.slice(0, 10)
+											.map((product, index) => (
+												<div
+													className='search-product-details'
+													key={index}>
+													<Link
+														className='search-product-title'
+														onClick={() =>
+															resetSearch(
+																product?._id
+															)
+														}>
+														{product?.title}
+													</Link>
+												</div>
+											))}
+									</div>
+								)}
 							</div>
 						</div>
 					</div>
