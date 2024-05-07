@@ -91,10 +91,10 @@ const Header = () => {
 					<div className='header-main'>
 						<div className='header-left'>
 							<div className='logo'>
-								<Link to={"/"}>
+								<Link className='logo-link' to={"/"}>
 									<img
 										src='./images/drstore.png'
-										alt='logo'
+										alt='DR Store'
 									/>
 								</Link>
 							</div>

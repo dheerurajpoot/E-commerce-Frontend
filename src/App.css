@@ -60,8 +60,14 @@ body, input, select, button{
   gap: 20px;
   width: 25%;
 }
+.logo-link{
+  text-decoration: none;
+}
 .logo img{
   width: 190px;
+  font-size: 30px;
+  font-weight: 800;
+  color: #fff;
 }
 .need-help{
   border: 1px solid #fff;
@@ -2091,8 +2097,6 @@ background-color: var(--primery-color);
   justify-content: center;
 }
 .checkout-d-flex{
-  display: flex;
-  flex-direction: row;
   background: #f6f6f6;
   border-radius: 0 0 5px 5px;
   padding: 25px;
