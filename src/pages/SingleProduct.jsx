@@ -50,7 +50,9 @@ const SingleProduct = () => {
 			dispatch(
 				addToCart({ productId, quantity, color, price: product?.price })
 			);
-			navigate("/cart");
+			setTimeout(() => {
+				navigate("/cart");
+			}, 800);
 			dispatch(getCart());
 		}
 	};

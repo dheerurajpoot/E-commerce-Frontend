@@ -77,7 +77,10 @@ const Cart = () => {
 					<div className='shopping-cart'>
 						<h1 className='page-title'>Shopping Cart</h1>
 						{cartProducts?.length === 0 && (
-							<p>Your cart is empty!</p>
+							<p className='empty-cart'>
+								Your cart is empty!{" "}
+								<Link to={"/shop"}>Start Shopping</Link>
+							</p>
 						)}
 						<div className='cartpage-items'>
 							{cartProducts?.map((item, index) => (
@@ -102,7 +105,7 @@ const Cart = () => {
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
+											<tr className='cart-table-row'>
 												<td className='cart-product-info'>
 													<div className='product-info-wrapper'>
 														<img

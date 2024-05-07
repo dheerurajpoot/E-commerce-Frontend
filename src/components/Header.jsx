@@ -53,7 +53,7 @@ const Header = () => {
 			<div className='header-container'>
 				<div className='topbar'>
 					<div className='header-top container'>
-						<div className='header-top-sections'>
+						<div className='header-top-sections h-top-left'>
 							<div>
 								<p>Purana Shivli Road, Kalyanpur, Kanpur</p>
 							</div>

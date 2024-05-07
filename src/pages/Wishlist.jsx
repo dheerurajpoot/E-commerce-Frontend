@@ -28,7 +28,8 @@ const Wishlist = () => {
 				<div className='container wishlist-section'>
 					{wishlistItems?.length === 0 && (
 						<p className='empty-wishlist'>
-							Your wishlist is empty!
+							Your wishlist is empty!{" "}
+							<Link to={"/shop"}>Start Shopping</Link>
 						</p>
 					)}
 					{wishlistItems?.map((items, index) => {
