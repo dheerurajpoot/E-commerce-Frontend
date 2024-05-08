@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../features/category/categorySlice";
 import { getCart, getWishlistItems } from "../features/auth/userSlice";
 import { BiSupport } from "react-icons/bi";
-
+import drLogo from "./../../public/images/drstore.png";
 const Header = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -48,6 +48,7 @@ const Header = () => {
 		localStorage.clear();
 		window.location.reload();
 	};
+
 	return (
 		<>
 			<div className='header-container'>
@@ -92,10 +93,7 @@ const Header = () => {
 						<div className='header-left'>
 							<div className='logo'>
 								<Link className='logo-link' to={"/"}>
-									<img
-										src='./images/drstore.png'
-										alt='DR Store'
-									/>
+									<img src={drLogo} alt='DR Store' />
 								</Link>
 							</div>
 							<div className='need-help'>
