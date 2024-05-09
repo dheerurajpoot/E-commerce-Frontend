@@ -34,7 +34,7 @@ const Footer = () => {
 						</div>
 						<div className='l-footer-item'>
 							<FiMail />
-							<span>support@evtn.org</span>
+							<span>contact@dheeru.org</span>
 						</div>
 					</div>
 					<div className='footer-middle'>
@@ -91,9 +91,13 @@ const Footer = () => {
 							Register now to get updates on promotions and
 							coupns. Don’t worry! We not spam
 						</p>
-						<form className='form-control'>
+						<form
+							className='form-control'
+							action='https://formspree.io/f/xbjnbred'
+							method='POST'>
 							<input
-								type='text'
+								type='email'
+								name='email'
 								className='input'
 								placeholder='Enter e-mail adress'
 							/>

@@ -7,38 +7,73 @@ const ShippingPolicy = () => {
 			<MetaTitle title={"Our Shipping Policies"} />
 			<div className='shipping-container'>
 				<div className='container'>
-					<h2 className='shipping-heading'>Shipping Policy</h2>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Voluptatem, eveniet ipsa. Eos sit beatae nobis molestiae
-						ipsa libero quam facilis sapiente nostrum voluptas
-						reprehenderit earum sequi sint eius distinctio omnis
-						labore hic itaque nesciunt, quis, aspernatur
-						necessitatibus. Quas debitis eos, minus harum, animi ex
-						a iure sapiente natus cupiditate possimus aliquam
-						maiores neque optio tempore, nam adipisci voluptatibus!
-						Ducimus cumque modi soluta ipsum magni possimus
-						consectetur porro facere consequatur eligendi in,
-						ratione ipsam quas labore. Error, impedit corporis, ipsa
-						dolor ea atque delectus id alias natus animi optio
-						distinctio iste fuga, unde architecto? Consectetur
-						molestiae ea est optio placeat assumenda minima
-						laudantium, earum modi recusandae officia laborum
-						doloremque, animi fuga doloribus voluptates ipsum vel
-						impedit mollitia labore vero praesentium tempore
-						provident velit. Corrupti ducimus qui adipisci cum aut
-						unde rem velit blanditiis hic fuga? Ex magnam sed
-						consectetur? Sint sunt voluptas dolorum ex, itaque
-						praesentium! Assumenda ea ipsum magnam est, non sit
-						accusamus! Natus officia, dolore quasi est porro, modi
-						iusto sit nostrum itaque dicta voluptate laudantium
-						expedita aliquam provident neque nisi quis veniam
-						repellendus voluptates? Deserunt fugiat totam nulla
-						exercitationem, similique repellat eligendi soluta
-						provident non mollitia enim tempora possimus ut
-						repellendus sunt facere illum praesentium, assumenda
-						omnis vel!
-					</p>
+					<h1 className='shipping-heading'>Shipping Policy</h1>
+					<div className='shipping-polity-details'>
+						<h2>What is DR Store Shipping Policy?</h2>
+						<ul>
+							<li>
+								We strive to deliver products purchased from DR
+								Store in excellent condition and in the fastest
+								possible time. The order with the pricing of{" "}
+								<b>INR 499 or above</b> will have no shipping
+								charges.
+							</li>
+							<li>
+								We provide free shipping for orders with a value
+								of <b>INR 499 or above.</b>
+							</li>
+							<li>
+								We usually deliver the products within{" "}
+								<b>2-7 business days</b>, across all over India
+								(under normal circumstances).
+							</li>
+						</ul>
+					</div>
+					<div className='shipping-polity-details'>
+						<h2>What if my order is Cancelled?</h2>
+						<ul>
+							<li>
+								If your prepaid order is
+								canceled/lost/undelivered, we’ll process the
+								complete refund (including shipping) to your
+								source account as per the company policy.
+							</li>
+							<li>
+								We will take <b>2-5 business days</b> to give
+								you refund.
+							</li>
+							<li>
+								Before cancelling any product order please check
+								the cancelation policy of that products if any
+								specific. Generally{" "}
+								<b>
+									we cut the delivery chages on cancelled
+									orders.
+								</b>
+							</li>
+						</ul>
+					</div>
+					<div className='shipping-polity-details'>
+						<h2>
+							What are the additional COD charges on DR Store
+							products?
+						</h2>
+						<ul>
+							<li>
+								COD available in all products. Except digital
+								products.
+							</li>
+							<li>
+								In case of a change in plan, you can reach out
+								to our customer support on :{" "}
+								<b>contact@dheeru.org</b>
+							</li>
+							<li>
+								*Order value is calculated after adjusting all
+								the applicable discount(s).
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</>

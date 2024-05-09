@@ -10,7 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../features/category/categorySlice";
 import { getCart, getWishlistItems } from "../features/auth/userSlice";
 import { BiSupport } from "react-icons/bi";
-import drLogo from "./../../public/images/drstore.png";
+import drLogo from "/images/drstore.png";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
 const Header = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -49,6 +51,11 @@ const Header = () => {
 		window.location.reload();
 	};
 
+	// drawer menu
+	const [isOpen, setIsOpen] = useState(false);
+	const toggleDrawer = () => {
+		setIsOpen((prevState) => !prevState);
+	};
 	return (
 		<>
 			<div className='header-container'>
@@ -272,9 +279,79 @@ const Header = () => {
 				<div className='header-bottom'>
 					<div className='container h-bottom'>
 						<div className='h-bottom-left'>
-							<Link className='hamburger'>
+							<Link className='hamburger' onClick={toggleDrawer}>
 								<IoMenu color='#fff' size={25} />
 							</Link>
+							<Drawer
+								open={isOpen}
+								onClose={toggleDrawer}
+								direction='left'
+								className='drawer-main'>
+								<div className='header-drawer'>
+									<div className='logo drawer-logo'>
+										<Link className='logo-link' to={"/"}>
+											<img src={drLogo} alt='DR Store' />
+										</Link>
+									</div>
+									<div className='drawer-menu'>
+										<NavLink
+											to={"/"}
+											className={"drawer-menu-item"}>
+											{"Home"}
+										</NavLink>
+										<NavLink
+											to={"/profile"}
+											className={"drawer-menu-item"}>
+											{"Profile"}
+										</NavLink>
+										<NavLink
+											to={"/my-orders"}
+											className={"drawer-menu-item"}>
+											{"My Orders"}
+										</NavLink>
+										<NavLink
+											to={"/wishlist"}
+											className={"drawer-menu-item"}>
+											{"Wishlist"}
+										</NavLink>
+										<NavLink
+											to={"/shop"}
+											className={"drawer-menu-item"}>
+											{"Shop"}
+										</NavLink>
+										<NavLink
+											to={"/sale"}
+											className={"drawer-menu-item"}>
+											{"Sale"}
+										</NavLink>
+										<NavLink
+											to={"/contact"}
+											className={"drawer-menu-item"}>
+											{"Contact"}
+										</NavLink>
+										<NavLink
+											to={"/about"}
+											className={"drawer-menu-item"}>
+											{"About"}
+										</NavLink>
+									</div>
+									<div className='header-drawer-btn '>
+										{loggedUser && loggedUser ? (
+											<Link
+												onClick={handleLogout}
+												className='drawer-btn'>
+												<p>Logout</p>
+											</Link>
+										) : (
+											<Link
+												to={"/sign-in"}
+												className='drawer-btn'>
+												<p>Login</p>
+											</Link>
+										)}
+									</div>
+								</div>
+							</Drawer>
 							<div className='h-dropdown'>
 								<button>
 									All Categories <IoIosArrowDown />

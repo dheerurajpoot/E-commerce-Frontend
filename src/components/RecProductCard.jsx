@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { FiEye } from "react-icons/fi";
 
 const RecProductCard = ({ product }) => {
-	const { _id, title, price, images, tags } = product;
+	const { _id, title, price, images, tags, totalRating } = product;
 
 	const dispatch = useDispatch();
 	const addItemToWishlist = (productId) => {
@@ -63,9 +63,11 @@ const RecProductCard = ({ product }) => {
 						</h3>
 						<ReactStars
 							count={5}
-							value={3}
+							value={
+								Number(totalRating) ? Number(totalRating) : 0
+							}
 							edit={false}
-							size={15}
+							size={18}
 							activeColor='#FF504E'
 						/>
 						<div className='price'>

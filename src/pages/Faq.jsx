@@ -86,6 +86,23 @@ const Faq = () => {
 							</p>
 						</label>
 					</div>
+					<div className='shipping-polity-details'>
+						<h2>How to reset the forgotten password?</h2>
+						<ul>
+							<li>
+								Click on Forgotten password? (Mentioned on
+								“Login using Email” and "Profile") window only.
+							</li>
+							<li>
+								Enter your registered email address. You’ll
+								receive an email with the password reset link.
+							</li>
+							<li>
+								Follow the steps mentioned on the screen. Your
+								password will be reset.
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</>

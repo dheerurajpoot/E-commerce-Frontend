@@ -23,11 +23,16 @@ const Sale = () => {
 					<div className='sale-banner'>
 						<img src='./images/sale-banner.jpg' alt='sale banner' />
 					</div>
-					{saleProducts.map((product, index) => {
-						return (
-							<FeaturedProduct key={index} product={product} />
-						);
-					})}
+					<div className='sale-page-products'>
+						{saleProducts.map((product, index) => {
+							return (
+								<FeaturedProduct
+									key={index}
+									product={product}
+								/>
+							);
+						})}
+					</div>
 				</div>
 			</div>
 		</>

@@ -382,19 +382,24 @@ const Checkout = () => {
 											</thead>
 											<tbody>
 												<tr>
-													<td>Products :</td>
+													<td className='checkout-product-heading'>
+														Products :
+													</td>
 													{cartProducts &&
 														cartProducts?.map(
 															(item, index) => {
 																return (
 																	<td
+																		className='checkout-products-title'
 																		key={
 																			index
 																		}>
-																		{`${item?.productId?.title.substr(
-																			0,
-																			18
-																		)}...`}
+																		<p>
+																			{`${item?.productId?.title.substr(
+																				0,
+																				18
+																			)}...`}
+																		</p>
 																	</td>
 																);
 															}
