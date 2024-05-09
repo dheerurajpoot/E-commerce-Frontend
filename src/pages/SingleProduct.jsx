@@ -18,15 +18,21 @@ const SingleProduct = () => {
 	const [color, setColor] = useState(null);
 	const [quantity, setQuantity] = useState(1);
 	const [cartItem, setCartItem] = useState(false);
+	const [imageLoading, setImageLoading] = useState(true);
 	const dispatch = useDispatch();
 	const location = useLocation();
 	const navigate = useNavigate();
 	const productId = location.pathname.split("/")[2];
 	useEffect(() => {
 		dispatch(getProduct(productId));
+		setTimeout(() => {
+			setImageLoading(false);
+		}, 600);
+
 		dispatch(getCart());
 		window.scrollTo(0, 0);
 	}, [dispatch]);
+
 	const product = useSelector((state) => state?.product?.product);
 	const cartProducts = useSelector((state) => state?.auth?.getCart);
 
@@ -96,10 +102,14 @@ const SingleProduct = () => {
 				<div className='container'>
 					<div className='single-product-details'>
 						<div className='single-product-image'>
-							<img
-								src={`${product?.images[0]?.url}`}
-								alt='Product Image'
-							/>
+							{imageLoading ? (
+								<div className='loader'></div>
+							) : (
+								<img
+									src={`${product?.images[0]?.url}`}
+									alt='Product Image'
+								/>
+							)}
 						</div>
 						<div className='single-product-info'>
 							<h2 className='single-product-name'>
