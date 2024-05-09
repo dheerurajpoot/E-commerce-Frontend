@@ -116,11 +116,10 @@ const Cart = () => {
 
 														<div className='cart-product-title'>
 															<h4 className='cart-product-name'>
-																{
-																	item
-																		?.productId
-																		?.title
-																}
+																{`${item?.productId?.title.substr(
+																	0,
+																	45
+																)}...`}
 															</h4>
 															<div className='cart-color'>
 																Color:{" "}

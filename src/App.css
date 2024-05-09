@@ -625,34 +625,7 @@ body, input, select, button{
   justify-content: space-between;
   margin-bottom: 20px;
 }
-/* .product-options{
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.quantity{
-  border: .5px solid gray;
-  width: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 2px;
-}
-.product-options h3{
-  font-size: 15px;
-}
-.quantity input{
-  width: 40px;
-  margin: 0 10px;
-  text-align: center;
-  outline: none;
-  border: none;
-}
-.quantity span{
-  cursor: pointer;
-  font-size: 18px; 
-}*/
+
 .card-wishlist{
   cursor: pointer;
   color: var(--fourth-color);
@@ -820,7 +793,17 @@ background-color: var(--primery-color);
   align-items: center;
   margin: 50px 0;
 }
-
+.home-section-title{
+  margin-bottom: 10px;
+  color: var(--fourth-color);
+}
+.home-special{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
 /* wishlist page start here  */
 
 .wishlist-container{
@@ -918,7 +901,7 @@ background-color: var(--primery-color);
 
 .cart-product-info {
   padding: 1rem 0;
-  width: 35%;
+  width: 23%;
 }
 
 .product-info-wrapper {

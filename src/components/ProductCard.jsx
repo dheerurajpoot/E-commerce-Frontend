@@ -56,16 +56,6 @@ const ProductCard = ({ product }) => {
 							<FaRegHeart size={25} />
 						</Link>
 					</div>
-					{/* <div className='product-options'>
-						<div>
-							<h3>Quantity</h3>
-							<div className='quantity'>
-								<span>-</span>
-								<input type='number' placeholder='1' />
-								<span>+</span>
-							</div>
-						</div>
-					</div> */}
 					<a href={`/product/${_id}`} className='atc-btn'>
 						View Product
 					</a>
