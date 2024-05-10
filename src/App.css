@@ -2650,7 +2650,7 @@ background-color: var(--primery-color);
     display: none;
   }
   
-@media only screen and (max-width: 600px) and (min-width: 350px){
+@media only screen and (max-width: 750px) and (min-width: 350px){
   .header-container{
     height: 250px;
   }
@@ -2903,4 +2903,69 @@ background-color: var(--primery-color);
   .promo-container{
     display: none;
   }
+}
+@media only screen and (max-width: 960px) and (min-width: 750px){
+  .header-top-sections{
+    gap: 10px;
+  }
+  .tooltip{
+    display: none;
+  }
+  .need-help{
+    display: none;
+  }
+  .select_area{
+    display: none;
+  }
+  .line{
+    display: none;
+  }
+  .h-bottom-middle{
+    display: none;
+  }
+  .search-main-container{
+    width: 98%;
+  }
+  .header-right{
+    gap: 15px;
+  }
+  .slide img{
+    height: 300px;
+  }
+  .mini-banners img{
+    height: auto;
+  }
+  .card{
+    height: 320px;
+  }
+  .card > figure{
+    margin: 0 auto;
+  }
+  .card > figure > img{
+    height: 160px;
+  }
+  .details{
+    top: 45%;
+    padding: 10px;
+  }
+  .rate-wishlist{
+    margin-bottom: 0px;
+  }
+  .min-details{
+    flex-direction: column;
+  }
+  .min-details h1{
+    font-size: 13px;
+  }
+  .atc-btn{
+    padding: 5px;
+    font-size: 12px;
+  }
+  .rec-product-card{
+    width: 50%;
+  }
+  .footer-top{
+    height: auto;
+  }
+
 }
