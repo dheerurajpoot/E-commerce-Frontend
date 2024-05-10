@@ -2738,6 +2738,36 @@ background-color: var(--primery-color);
   .mini-banners img{
     width: 100%;
   }
+  .card{
+    width: 150px;
+    height: 310px;
+  }
+  .card > figure{
+    margin: 0 auto;
+  }
+  .card > figure > img{
+    height: 150px;
+  }
+  .details{
+    top: 45%;
+    padding: 10px;
+  }
+  .details > .min-details{
+    flex-direction: column;
+  }
+  .min-details h1{
+    font-size: 12px;
+  }
+  .rate-wishlist{
+    margin-bottom: 0;
+  }
+  .card-wishlist svg{
+    width: 20px;
+  }
+  .atc-btn{
+    padding: 5px;
+    font-size: 12px;
+  }
   .rec-products{
     flex-direction: column;
   }
@@ -2963,6 +2993,16 @@ background-color: var(--primery-color);
   }
   .rec-product-card{
     width: 50%;
+  }
+  .f-product-container{
+    width: 190px;
+    height: 340px;
+  }
+  .featured-product-name{
+    font-size: 14px;
+  }
+  .featured-product-button .default-state{
+    font-size: 12px;
   }
   .footer-top{
     height: auto;
