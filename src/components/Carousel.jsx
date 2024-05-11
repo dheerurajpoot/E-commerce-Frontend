@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const slidesData = [
 	{
@@ -23,6 +24,7 @@ const slidesData = [
 ];
 
 const Carousel = () => {
+	const navigate = useNavigate();
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	useEffect(() => {
@@ -43,6 +45,9 @@ const Carousel = () => {
 			prevIndex < slidesData.length - 1 ? prevIndex + 1 : 0
 		);
 	};
+	const handlebtnClick = () => {
+		navigate("/shop");
+	};
 	return (
 		<>
 			<div className='carousel'>
@@ -62,7 +67,9 @@ const Carousel = () => {
 							</button>
 							<h3>{slide.title}</h3>
 							<p>{slide.subtitle}</p>
-							<button className='carousel-btn'>
+							<button
+								onClick={handlebtnClick}
+								className='carousel-btn'>
 								{slide.buttonText} &#10095;
 							</button>
 						</div>
