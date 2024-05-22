@@ -239,7 +239,7 @@ const Header = () => {
 							<div className='mobile-search'>
 								<input
 									type='text'
-									id='search_text'
+									id='search_text_2'
 									placeholder='Search by Category or products ..'
 									value={searchQuery}
 									onChange={handleSearchChange}

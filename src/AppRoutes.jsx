@@ -23,6 +23,7 @@ import { OpenRoutes } from "./routing/OpenRoutes";
 import Orders from "./pages/Orders";
 import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
+import VerifyMail from "./pages/VerifyMail";
 
 const AppRoutes = () => {
 	return (
@@ -101,6 +102,7 @@ const AppRoutes = () => {
 						/>
 						<Route path='/about' element={<About />} />
 						<Route path='/sign-in' element={<Login />} />
+						<Route path='/verify/:id' element={<VerifyMail />} />
 						<Route
 							path='/reset-password/:token'
 							element={<ResetPassword />}

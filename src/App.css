@@ -2651,6 +2651,37 @@ background-color: var(--primery-color);
   .review-input{
     width: 100%;
   }
+
+  /* verify mail section */
+
+  .verify-container, .mail-section{
+    display: flex;
+    justify-content: center;
+
+  }
+  .verify-mail{
+    width: 380px;
+    height: 360px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    flex-direction: column;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 50px 0;
+  }
+  .verify-mail button{
+    background: var(--primery-color);
+    padding: 10px 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #fff;
+    margin-top: 20px;
+    cursor: pointer;
+  }
   
 @media only screen and (max-width: 750px) and (min-width: 350px){
   .header-container{

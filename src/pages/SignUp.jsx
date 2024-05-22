@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../features/auth/userSlice";
-import { useNavigate } from "react-router-dom";
 import MetaTitle from "../components/MetaTitle";
 
 const signUpSchema = yup.object({
@@ -19,7 +18,6 @@ const signUpSchema = yup.object({
 
 const SignUp = () => {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
 			name: "",
@@ -31,8 +29,10 @@ const SignUp = () => {
 		onSubmit: (values) => {
 			dispatch(registerUser(values));
 			setTimeout(() => {
-				navigate("/sign-in");
-			}, 300);
+				alert(
+					"You have successfully registered! Please verify your email, Verification Link has been sended to your mail address!"
+				);
+			}, 500);
 		},
 	});
 	return (

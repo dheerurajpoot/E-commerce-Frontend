@@ -35,7 +35,7 @@ const Login = () => {
 		setTimeout(() => {
 			navigate("/");
 			window.location.reload();
-		}, 300);
+		}, 800);
 	}
 
 	return (
