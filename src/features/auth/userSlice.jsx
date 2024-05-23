@@ -161,15 +161,18 @@ export const userSlice = createSlice({
 				state.message = "Success";
 				if (state.isSuccess === true) {
 					toast.success("Account Created Succuessfully");
+					alert(
+						"You have successfully registered! Please verify your email, Verification Link has been sended to your mail address!"
+					);
 				}
 			})
 			.addCase(registerUser.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
 				state.isSuccess = false;
-				state.message = action.error;
+				state.message = action.payload;
 				if (state.isError === true) {
-					toast.error(action.error);
+					toast.error(action.payload.response.data.message);
 				}
 			})
 			.addCase(loginUser.pending, (state) => {

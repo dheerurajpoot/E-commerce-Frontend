@@ -28,11 +28,6 @@ const SignUp = () => {
 		validationSchema: signUpSchema,
 		onSubmit: (values) => {
 			dispatch(registerUser(values));
-			setTimeout(() => {
-				alert(
-					"You have successfully registered! Please verify your email, Verification Link has been sended to your mail address!"
-				);
-			}, 500);
 		},
 	});
 	return (
