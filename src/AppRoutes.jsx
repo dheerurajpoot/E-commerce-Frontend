@@ -119,7 +119,7 @@ const AppRoutes = () => {
 							path='/sign-up'
 							element={
 								<OpenRoutes>
-									{/* <SignUp /> */ <Body />}
+									<SignUp />
 								</OpenRoutes>
 							}
 						/>
