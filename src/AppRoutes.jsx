@@ -115,14 +115,14 @@ const AppRoutes = () => {
 								</ProtectedRoutes>
 							}
 						/>
-						<Route
+						{/* <Route
 							path='/sign-up'
 							element={
 								<OpenRoutes>
 									<SignUp />
 								</OpenRoutes>
 							}
-						/>
+						/> */}
 					</Route>
 				</Routes>
 			</BrowserRouter>
