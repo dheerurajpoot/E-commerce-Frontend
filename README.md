@@ -85,7 +85,6 @@ The application is deployed on Vercel, providing a scalable and reliable hosting
      PORT = your_port
      DB_URL=your_mongodb_uri
      JWT_SECRET = your_JWT_secret
-     JWT_SECRET = kdhirihifhdihe
      RAZORPAY_KEY_ID=your_razorpay_key_id
      RAZORPAY_KEY_SECRET=your_razorpay_key_secret
      MAIL_ID=your_email_address
